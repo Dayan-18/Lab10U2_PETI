@@ -1,0 +1,7 @@
+AR06 · Anexos generados:
+  docs/evidencias/S10/anexo_A_modelo_arquitectura.archimate
+  docs/evidencias/S10/anexo_B_vista_proceso_aplicacion.png
+  docs/evidencias/S10/anexo_C_estructura_informacion.xlsx
+  docs/evidencias/S10/anexo_D_arquitectura_objetivo.png
+  docs/evidencias/S10/anexo_E_analisis_brechas.xlsx
+  docs/evidencias/S10/anexo_F_seccion_5.pdf
