@@ -1,0 +1,10 @@
+6338d93 (HEAD -> main) S10: README con estructura, reproduccion y etiquetas
+8e57681 S10: anexos A-F (modelo, vistas, estructura de la informacion, brechas con formulas y seccion 5 en PDF)
+5df419a (tag: v0.10) S10: Paso E - seccion 5 del PETI (arquitectura empresarial) redactada
+ec73626 S10: Paso F - corrige la relacion invalida (dueño del dato como asociacion) y la validacion pasa
+3221b1b S10: Paso F - script de validacion y registro de la primera ejecucion (1 falla)
+9b2dc4d S10: Paso D - analisis de brechas (16), paquetes de trabajo (9) y secuencia obligada; vista V05 en el modelo
+7e49063 S10: Pasos B y C - modelo ArchiMate actual y objetivo (elementos, relaciones, 4 vistas) en formato de Archi
+13d598c S10: Paso B - estructura de la informacion (10 entidades) y cooperacion proceso-aplicacion
+4ef0b58 S10: Paso A - siete principios de arquitectura con declaracion, razon, implicancias y trazabilidad
+732d825 S10: estructura del repositorio e inventario de la arquitectura actual (insumo del caso)
