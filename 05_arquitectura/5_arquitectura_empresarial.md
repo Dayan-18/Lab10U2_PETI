@@ -1,64 +1,62 @@
 # 5. Arquitectura empresarial
 
-**PETI de DICOSUR · v0.10** · Clasificación **Restringida** · Modelo: `05_arquitectura/DICOSUR_arquitectura.archimate` (ArchiMate 3.2, formato de Archi)
+**PETI de la Municipalidad Distrital de Alto Selva · v0.10** · Clasificación **Restringida** · Modelo: `05_arquitectura/ALTOSELVA_arquitectura.archimate` (ArchiMate 3.2, formato de Archi)
 
 ## 5.1 Principios de arquitectura
 
-Siete principios gobiernan las decisiones del plan. El detalle de cada uno (declaración, razón, implicancias y trazabilidad) está en [`AR01_principios.md`](AR01_principios.md).
+Siete principios gobiernan las decisiones del plan. El detalle de cada uno (declaración, razón, implicancias y trazabilidad) y los doce hallazgos de los que derivan están en [`AR01_principios.md`](AR01_principios.md).
 
 | Código | Principio | Deriva de |
 |---|---|---|
-| AP-01 | Dato único con dueño | D7 · F2 · E-09 |
-| AP-02 | Integración por servicios, no por archivos ni por re-digitación | D3 · D4 · E-01 · E-02 |
-| AP-03 | Continuidad antes que funcionalidad | A2 (PE-05) · D6 · E-05 · E-12 |
-| AP-04 | Privacidad y seguridad desde el diseño | D5 · A3 · A6 · E-11 |
-| AP-05 | Canal digital primero | Visión (2.2) · D3 · O1 · A1 |
-| AP-06 | Una hoja de cálculo no es un sistema de registro | D4 · D1 · E-02 · E-07 |
-| AP-07 | Ningún sistema depende de una sola persona | D2 · A5 · E-10 |
+| AP-01 | Gobierno digital exigible primero | H-01 · H-02 · D. Leg. 1412 · R.M. 119-2018-PCM |
+| AP-02 | Dato único con dueño por cargo | H-07 · H-09 |
+| AP-03 | Continuidad antes que funcionalidad | H-04 · H-05 · incidente de la amnistía 2025 |
+| AP-04 | Ningún sistema crítico sin soporte, código ni documentación | H-03 · H-04 · H-12 |
+| AP-05 | El registro digital es la fuente; ni el papel ni la hoja de cálculo lo son | H-07 · H-08 · H-09 |
+| AP-06 | Interoperabilidad por servicios del Estado, no por re-digitación | H-06 |
+| AP-07 | Privacidad y seguridad desde el diseño | H-10 · H-11 · Ley 29733 |
 
 ## 5.2 Arquitectura actual (as-is)
 
-Fuente: inventario entregado por la organización ([`docs/caso/arquitectura-actual.md`](../docs/caso/arquitectura-actual.md)). Vista por capas: `graficos/V01_arquitectura_actual_capas.png`.
+Fuente: inventario entregado por la organización ([`docs/caso/arquitectura-actual.md`](../docs/caso/arquitectura-actual.md)), contrastado con las secciones C y D de la ficha ([`docs/caso/FICHA.md`](../docs/caso/FICHA.md)). Vista por capas: `graficos/V01_arquitectura_actual_capas.png`.
 
 ### 5.2.1 Capa de negocio: actores, procesos y servicios
 
-- **Actores:** cliente (bodega), vendedor, jefe de almacén, jefe de despacho, analista comercial, tesorería. **Roles:** solicitante de pedido, aprobador de crédito, despachador.
-- **Procesos (cadena de valor, 3.1.1):** abastecimiento · toma de pedido por teléfono y papel · aprobación de crédito · preparación · ruteo y despacho · facturación · cobranza · atención de reclamos por correo · análisis comercial · gestión de personal.
-- **Servicios de negocio:** entrega en 24 h · crédito a 30 días · atención de reclamo.
-- **Objetos de negocio:** cliente · producto · pedido · comprobante · ruta de despacho.
+- **Actores:** ciudadano y contribuyente (41 800 habitantes), mesa de partes, Subgerencia de Administración Tributaria, Subgerencia de Licencias, Registro Civil, Logística y Tesorería, Recursos Humanos y Unidad de TI (3 personas). **Roles:** administrado (solicitante), contribuyente, fiscalizador.
+- **Procesos (ficha §D):** trámite documentario y mesa de partes · recaudación de tributos municipales · licencias de funcionamiento y edificación · registro civil · contrataciones y logística · atención al ciudadano; y, del inventario, gestión de personal y planilla · transparencia y acceso a la información.
+- **Servicios de negocio:** recepción y atención de trámites · pago de tributos · otorgamiento de licencias · inscripción y certificados de registro civil · acceso a la información pública.
+- **Objetos de negocio:** contribuyente y predio · expediente · licencia · acta de registro civil · trabajador · pago a proveedor.
 
 ### 5.2.2 Capa de datos: entidades, fuentes autoritativas y dueños
 
-Diez entidades inventariadas en [`AR02_entidades.csv`](AR02_entidades.csv) (vista `V03_estructura_informacion.png`).
+Ocho entidades inventariadas en [`AR02_entidades.csv`](AR02_entidades.csv) (vista `V03_estructura_informacion.png`).
 
-**Entidades sin fuente autoritativa: 5 de 10** (cliente, precio, inventario, ruta de despacho, cuenta por cobrar). **Sin dueño: 5 de 10** (cliente, producto, precio, pedido, ruta). **Sin fuente ni dueño a la vez: 3 de 10** (cliente, precio, ruta). **Con datos personales: 6 de 10**, una de ellas con datos sensibles (trabajador, Restringida).
+**Entidades sin fuente autoritativa digital: 4 de 8** (expediente, licencia de funcionamiento, cuenta de usuario, acta de registro civil). **Sin dueño: 5 de 8** (contribuyente y predio, proveedor, pago a proveedor, cuenta de usuario, acta de registro civil). **Sin fuente ni dueño a la vez: 2 de 8** (cuenta de usuario y acta de registro civil). **Con datos personales: 7 de 8**, dos de ellas con datos sensibles (trabajador y acta de registro civil, Restringidas).
 
-El cliente es el caso más grave: reside en el ERP (8 400), en el portal (340) y en la hoja comercial (8 900); 500 clientes de la hoja no existen en el ERP.
+El expediente es el caso más grave: reside en el trámite documentario, en la mesa de partes virtual, en una hoja de control y en el archivo físico, con 6 200 al año en cada uno; «el físico manda» y 1 340 expedientes quedaron sin estado recuperable tras la caída. La deuda del contribuyente difiere entre rentas y la hoja de fiscalización.
 
 ### 5.2.3 Capa de aplicación: componentes, servicios e integraciones
 
-Doce componentes: ERP, portal B2B, WMS, planilla, facturación electrónica, correo y **seis hojas de cálculo que funcionan como sistema** (ruteo, clientes, precios, cobranza, personal y reportes). Servicios: registro de pedido, consulta de stock, emisión de comprobante. Integraciones: ERP↔WMS por archivo plano nocturno; portal→ERP por re-digitación; ERP→portal por carga diaria de archivo; ERP→OSE por servicio web (la única en línea).
+Diez componentes: SIAF-SP y AIRHSP (MEF), trámite documentario (desarrollo propio en PHP sin documentación ni soporte), rentas y catastro (soporte vencido desde 2023), portal de transparencia estándar (PCM), mesa de partes virtual (formulario web y correo), planilla local y **tres hojas de cálculo que funcionan como sistema** (control de expedientes físicos, fiscalización predial y registro de licencias). Servicios: registro de expedientes, emisión de recibos y cobro de tributos, registro presupuestal y de pagos, publicación de transparencia. Integraciones: **todas manuales** — el correo de mesa de partes se imprime y se registra; la recaudación se digita al SIAF-SP al cierre del día; trámite y rentas no se integran; el portal de transparencia se carga a mano.
 
 ### 5.2.4 Capa de tecnología: nodos, servicios y redes
 
-Servidor local único del ERP (aloja ERP, WMS y base de datos; plataforma en fin de soporte), VPS externo del portal, 41 estaciones y 18 dispositivos móviles. Servicios: base de datos, servicio web, respaldo diario en disco local sin prueba de restauración, correo en la nube y carpeta compartida. Redes: LAN de oficina, LAN y Wi-Fi del almacén, un enlace a internet.
+Un servidor en la sede para trámite documentario y rentas, sin autonomía de energía; cliente del SIAF-SP contra la plataforma del MEF; hosting contratado para la mesa de partes virtual; nube del Estado para transparencia; 95 estaciones de trabajo. Servicios: base de datos, servicio web, respaldo a disco local nunca restaurado por completo y correo institucional. Redes: red plana sin segmentación y un solo proveedor de internet; sin respaldo fuera de la sede.
 
 ### 5.2.5 Vista de cooperación proceso-aplicación
 
 | Proceso | Sistema que lo soporta | Nivel |
 |---|---|---|
-| Abastecimiento | ERP Compras | ✓ Bueno |
-| Toma de pedido | Teléfono + papel + portal B2B (6 %) | ✗ Deficiente |
-| Aprobación de crédito | ERP Créditos | ✓ Bueno |
-| Preparación del pedido | WMS + lectores de código de barras | ✓ Bueno |
-| Ruteo y despacho | Hoja de cálculo de ruteo | ✗ Deficiente |
-| Facturación | ERP Ventas + facturación electrónica | ✓ Bueno |
-| Cobranza | ERP + hoja de cobranza | ~ Parcial |
-| Atención de reclamos | Correo electrónico | ✗ Deficiente |
-| Análisis comercial y reportes | Hojas de cálculo | ✗ Deficiente |
-| Gestión de personal y planilla | Planilla + hoja de personal | ~ Parcial |
+| Trámite documentario y mesa de partes | Trámite documentario (sin soporte) + hoja de expedientes | ✗ Deficiente |
+| Recaudación de tributos municipales | Rentas y catastro (sin soporte) + hoja de fiscalización | ~ Parcial |
+| Licencias de funcionamiento y edificación | Rentas y catastro + hoja de licencias + archivo físico | ✗ Deficiente |
+| Registro civil | Ninguno: papel y hojas de cálculo | ✗ Sin soporte |
+| Contrataciones y logística | SIAF-SP (MEF) | ✓ Bueno |
+| Atención al ciudadano | Mesa de partes virtual (formulario + correo) | ✗ Deficiente |
+| Gestión de personal y planilla | AIRHSP (MEF) + planilla local | ~ Parcial |
+| Transparencia y acceso a la información | Portal de transparencia estándar (PCM) | ~ Parcial |
 
-**Procesos sin soporte o con soporte deficiente: 4 de 10**; otros 2 con soporte parcial. Vista: `V02_cooperacion_proceso_aplicacion.png`.
+**Procesos sin soporte o con soporte deficiente: 4 de 8**; otros 3 con soporte parcial. Solo contrataciones y logística, sostenido por un sistema del MEF, tiene soporte bueno. Vista: `V02_cooperacion_proceso_aplicacion.png`.
 
 ## 5.3 Arquitectura objetivo (to-be)
 
@@ -66,30 +64,33 @@ Servidor local único del ERP (aloja ERP, WMS y base de datos; plataforma en fin
 
 | Insumo | Sección | Qué aporta a la arquitectura objetivo |
 |---|---|---|
-| Capacidades de TI requeridas | 3.1.5 | Analítica y cumplimiento (madurez 1/5) deben existir: tablero de gestión y registro de tratamientos |
-| Visión y objetivos | 2.2 · 6.2 | OE-04 elevar el canal digital (hoy 6 %): portal integrado al ERP y al stock en línea |
-| Estrategias del FODA cruzado | 3.5 | E-01, E-02, E-05, E-07, E-09, E-10, E-11, E-12: qué se construye, se compra o se retira |
-| Marcos adoptados | 4.2 | COBIT DSS04 (continuidad) y DSS02 / ITIL (atención de solicitudes e incidentes) |
-| Proyectos no negociables | 4.1.5 | Plataforma con soporte (ESU terminadas el 13/10/2026) y cumplimiento del D. S. 016-2024-JUS |
+| Objetivo declarado de TI | Ficha §A · 2.2 | «Constituir el gobierno digital exigible y recuperar el control de los sistemas críticos»: Comité, Líder y Plan de Gobierno Digital; sistemas críticos con soporte |
+| Capacidades de TI requeridas | 3.1.5 | Continuidad, gestión documental electrónica, interoperabilidad y protección de datos deben existir |
+| Estrategias del FODA cruzado | 3.5 | Renovar o reemplazar los sistemas sin soporte, retirar hojas y papel, conectar con la PIDE |
+| Marcos adoptados | 4.2 | COBIT 2019 APO03 (arquitectura), DSS04 (continuidad), DSS02 y BAI06 (incidentes y cambios) |
+| Proyectos no negociables | 4.1.5 | D. Leg. 1412, D. S. 029-2021-PCM, R.M. 119-2018-PCM y Ley 29733 con el D. S. 016-2024-JUS |
 
 ### 5.3.2 Cambios por capa, con su origen trazado
 
 | Capa | Elemento actual | Elemento objetivo | Origen del cambio |
 |---|---|---|---|
-| Negocio | Toma de pedido por teléfono y papel | Autoservicio del cliente por canal digital, con atención asistida como excepción | Visión 2.2 · AP-05 · E-08 |
-| Negocio | Atención de reclamos por correo | Atención con registro y trazabilidad (mesa de atención) | ITIL / COBIT DSS02 (4.2) · E-06 |
-| Negocio | Sin dueños de dato | Rol «dueño del dato» designado por cargo | AP-01 |
-| Datos | Cliente en tres lugares sin dueño | Maestro de clientes del ERP como fuente autoritativa; dueño: gerente comercial | AP-01 · E-09 |
-| Datos | Precio en hoja de cálculo | Lista de precios única en el ERP | AP-01 · AP-06 |
-| Datos | Stock contable (ERP) y físico (WMS) | Stock autoritativo del WMS publicado como servicio | AP-01 · AP-02 |
-| Datos | Sin registro de datos personales | Registro de actividades de tratamiento | 4.1 · D. S. 016-2024-JUS · E-11 |
-| Aplicación | Portal B2B sin integración | Portal integrado (web y móvil) al ERP y al stock en tiempo real | Visión 2.2 · E-01 |
-| Aplicación | Ruteo en hoja de cálculo | Planificador de rutas integrado al WMS | E-02 (3.5) · AP-06 |
-| Aplicación | Integración por archivo plano nocturno | Capa de integración con servicios publicados | AP-02 |
-| Aplicación | Análisis en hojas de cálculo | Tablero de gestión sobre el maestro consolidado | E-07 (3.5) |
-| Aplicación | Hojas de clientes, precios, cobranza y personal | Retiradas | AP-06 |
-| Tecnología | Servidor único sin redundancia | Nodo de contingencia + respaldo verificado con copia inmutable | DSS04 (4.3) · E-12 |
-| Tecnología | Plataforma en fin de soporte | Plataforma con soporte vigente | 3.3 PE-05 · E-05 |
+| Negocio | Sin Comité ni Líder de Gobierno Digital | Comité de Gobierno Digital y Líder designados; proceso de gestión del gobierno digital y de TI | AP-01 · R.M. 119-2018-PCM |
+| Negocio | Sin dueños de dato | Rol «dueño del dato» designado por cargo | AP-02 |
+| Negocio | Trámite donde el físico manda | Trámite con expediente electrónico y mesa de partes digital | AP-05 · D. S. 029-2021-PCM |
+| Negocio | Licencias en hoja y archivo físico | Licencias con registro digital y plazos controlados | AP-05 |
+| Negocio | Registro civil en papel | Registro civil digital integrado con RENIEC | AP-05 · AP-06 |
+| Negocio | Atención por formulario y correo | Atención con seguimiento del trámite en línea | AP-06 |
+| Datos | Expediente en cuatro lugares | Expediente electrónico único; dueño: Secretario General | AP-02 · AP-05 |
+| Datos | Deuda distinta en rentas y fiscalización | Padrón de rentas como fuente; dueño: Subgerente de Administración Tributaria | AP-02 |
+| Datos | Sin registro de datos personales | Registro de actividades de tratamiento | AP-07 · Ley 29733 |
+| Aplicación | Trámite documentario sin soporte ni documentación | Gestión documental con soporte y código bajo control de la municipalidad | AP-04 |
+| Aplicación | Rentas y catastro con soporte vencido | Rentas y catastro con soporte vigente y fiscalización integrada | AP-03 · AP-04 |
+| Aplicación | Integraciones manuales | Capa de interoperabilidad con servicios publicados y conexión a la PIDE | AP-06 |
+| Aplicación | Tres hojas de cálculo como sistema y mesa de partes por correo | Retiradas | AP-05 |
+| Aplicación | Incidentes en cuaderno, cambios sin registro | Mesa de ayuda e inventario de activos de TI | AP-04 · COBIT DSS02 y BAI06 |
+| Tecnología | Servidor sin autonomía de energía | Servidor con energía ininterrumpida y soporte | AP-03 |
+| Tecnología | Respaldo a disco local sin restauración | Respaldo fuera de la sede con restauración probada y copia inmutable | AP-03 · COBIT DSS04 |
+| Tecnología | Red plana y sin segundo factor | Red segmentada por zonas y autenticación con segundo factor | AP-07 |
 
 ### 5.3.3 Vistas objetivo
 
@@ -99,37 +100,37 @@ Servidor local único del ERP (aloja ERP, WMS y base de datos; plataforma en fin
 
 ### 5.4.1 Tabla de brechas por capa y tipo
 
-16 brechas en [`AR03_brechas.csv`](AR03_brechas.csv), 78 semanas-persona.
+18 brechas en [`AR03_brechas.csv`](AR03_brechas.csv), 76 semanas-persona.
 
-| Capa | Nuevo | Modificar | Retirar | Total |
-|---|---|---|---|---|
-| Negocio | 2 | 1 | 0 | 3 |
-| Datos | 1 | 3 | 0 | 4 |
-| Aplicación | 3 | 2 | 1 | 6 |
-| Tecnología | 1 | 2 | 0 | 3 |
-| **Total** | **7** | **8** | **1** | **16** |
+| Capa | Nuevo | Modificar | Reemplazar | Retirar | Total | Esfuerzo (sem-p) |
+|---|---|---|---|---|---|---|
+| Negocio | 5 | 2 | 0 | 0 | 7 | 26 |
+| Datos | 1 | 2 | 0 | 0 | 3 | 10 |
+| Aplicación | 1 | 1 | 2 | 1 | 5 | 29 |
+| Tecnología | 0 | 3 | 0 | 0 | 3 | 11 |
+| **Total** | **7** | **8** | **2** | **1** | **18** | **76** |
 
 ### 5.4.2 Paquetes de trabajo derivados
 
 | Paquete | Brechas | Esfuerzo (sem-p) | Proyecto (7.1) |
 |---|---|---|---|
-| WP-01 Continuidad y plataforma del ERP | B-01 · B-02 · B-03 | 18 | P-01 · P-03 |
-| WP-02 Cumplimiento de datos personales | B-04 | 4 | P-02 |
-| WP-03 Gobierno del dato y maestros | B-05 · B-06 · B-07 · B-09 | 14 | P-08 · P-06 (gobierno) |
-| WP-04 Capa de integración por servicios | B-08 | 8 | **P-12 (nuevo)** |
-| WP-05 Canal digital integrado | B-10 · B-11 | 12 | P-04 · P-07 |
-| WP-06 Ruteo y trazabilidad de despacho | B-12 | 7 | P-05 |
-| WP-07 Analítica y retiro de hojas de cálculo | B-13 · B-15 | 8 | P-06 |
-| WP-08 Atención de reclamos con trazabilidad | B-14 | 4 | P-11 |
-| WP-09 Gestión del conocimiento del portal | B-16 | 3 | P-09 |
+| WP-01 Gobierno digital y de TI | B-01 · B-02 · B-03 | 10 | P-01 Comité, Líder y Plan de Gobierno Digital |
+| WP-02 Protección de datos y seguridad | B-04 · B-16 | 7 | P-02 Registro de tratamientos y seguridad de la información |
+| WP-03 Fuentes autoritativas y retiro de hojas | B-09 · B-10 · B-15 | 9 | P-03 Gobierno del dato municipal |
+| WP-04 Continuidad de la infraestructura | B-05 · B-06 | 7 | P-04 Respaldo verificado y continuidad |
+| WP-05 Recuperación de sistemas críticos | B-07 · B-08 | 18 | P-05 Rentas con soporte y gestión documental |
+| WP-06 Servicios digitales al ciudadano | B-11 · B-13 · B-14 · B-18 | 16 | P-06 Mesa de partes, licencias y registro civil digitales |
+| WP-07 Interoperabilidad con el Estado | B-12 | 6 | P-07 Capa de interoperabilidad y conexión a la PIDE |
+| WP-08 Gestión de servicios de TI | B-17 | 3 | P-08 Mesa de ayuda, cambios e inventario de activos |
 
 ### 5.4.3 Dependencias y secuencia obligada
 
-- **Ola 1:** WP-01 · WP-02 · WP-09 (sin dependencias).
-- **Ola 2:** WP-04 (requiere la plataforma migrada de WP-01).
-- **Ola 3:** WP-03 (requiere el registro de tratamientos de WP-02 y los servicios de WP-04).
-- **Ola 4:** WP-05 · WP-06 · WP-07 · WP-08.
+- **Ola 1:** WP-01 · WP-04 (sin dependencias: gobierno digital y continuidad).
+- **Ola 2:** WP-02 (requiere WP-01 y WP-04) · WP-05 (requiere el respaldo y el servidor de WP-04) · WP-08 (requiere WP-01).
+- **Ola 3:** WP-07 (requiere los sistemas recuperados de WP-05).
+- **Ola 4:** WP-06 (requiere WP-02, WP-05 y WP-07).
+- **Ola 5:** WP-03 (las hojas se retiran cuando sus reemplazos de WP-05 y WP-06 ya operan).
 
-Ruta crítica por esfuerzo: **WP-01 → WP-04 → WP-03 → WP-05 = 52 semanas-persona**. La analítica (WP-07) queda después del gobierno del dato (WP-03) y del cumplimiento (WP-02).
+Ruta crítica por esfuerzo: **WP-04 → WP-05 → WP-07 → WP-06 → WP-03 = 56 semanas-persona**. Los servicios digitales al ciudadano (WP-06) quedan después de la protección de datos (WP-02) y de la interoperabilidad (WP-07).
 
-**Los paquetes de trabajo son el insumo directo del portafolio (Sección 7.1).** El análisis agrega un proyecto que el FODA cruzado no había nombrado: la capa de integración (P-12), de la que dependen el canal digital, el ruteo y el maestro de stock.
+**Los paquetes de trabajo son el insumo directo del portafolio (Sección 7.1).** El análisis agrega dos proyectos que la organización no tenía en su lista: la capa de interoperabilidad (P-07), de la que dependen el registro civil digital y la recaudación sin re-digitación, y la mesa de ayuda con registro de cambios (P-08), sin la cual ningún cambio en los sistemas recuperados queda trazado.
