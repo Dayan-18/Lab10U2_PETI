@@ -1,4 +1,6 @@
-6338d93 (HEAD -> main) S10: README con estructura, reproduccion y etiquetas
+88eaa55 (HEAD -> main) S10: ajusta las vistas previas de los anexos C y E
+7501ff1 S10: capturas de las salidas de consola, registro de git log y vistas previas de los anexos
+6338d93 S10: README con estructura, reproduccion y etiquetas
 8e57681 S10: anexos A-F (modelo, vistas, estructura de la informacion, brechas con formulas y seccion 5 en PDF)
 5df419a (tag: v0.10) S10: Paso E - seccion 5 del PETI (arquitectura empresarial) redactada
 ec73626 S10: Paso F - corrige la relacion invalida (dueño del dato como asociacion) y la validacion pasa
