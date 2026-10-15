@@ -1,93 +1,104 @@
 id,capa,tipo,nombre,estado,nota
-ACT-01,Negocio,BusinessActor,Cliente (bodega),AO,8 400 clientes minoristas
-ACT-02,Negocio,BusinessActor,Vendedor,AO,Fuerza de ventas (12)
-ACT-03,Negocio,BusinessActor,Jefe de almacén,AO,
-ACT-04,Negocio,BusinessActor,Jefe de despacho,AO,
-ACT-05,Negocio,BusinessActor,Analista comercial,AO,
-ACT-06,Negocio,BusinessActor,Tesorería (créditos y cobranzas),AO,
-ROL-01,Negocio,BusinessRole,Solicitante de pedido,AO,
-ROL-02,Negocio,BusinessRole,Aprobador de crédito,AO,
-ROL-03,Negocio,BusinessRole,Despachador,AO,
-ROL-04,Negocio,BusinessRole,Dueño del dato,O,Designado por cargo para cada entidad (AP-01)
-PRO-01,Negocio,BusinessProcess,Abastecimiento,AO,
-PRO-02,Negocio,BusinessProcess,Toma de pedido por teléfono y papel,A,94 % de los pedidos
-PRO-02O,Negocio,BusinessProcess,Autoservicio de pedido por canal digital,O,Atención telefónica asistida como excepción
-PRO-03,Negocio,BusinessProcess,Aprobación de crédito,AO,
-PRO-04,Negocio,BusinessProcess,Preparación del pedido,AO,
-PRO-05,Negocio,BusinessProcess,Ruteo y despacho,AO,22 % del costo operativo
-PRO-06,Negocio,BusinessProcess,Facturación,AO,
-PRO-07,Negocio,BusinessProcess,Cobranza,AO,
-PRO-08,Negocio,BusinessProcess,Atención de reclamos por correo,A,Sin registro ni seguimiento
-PRO-08O,Negocio,BusinessProcess,Atención de reclamos con registro y trazabilidad,O,ITIL / COBIT DSS02
-PRO-09,Negocio,BusinessProcess,Análisis comercial y reportes,AO,
-PRO-10,Negocio,BusinessProcess,Gestión de personal y planilla,AO,
-SRV-01,Negocio,BusinessService,Entrega en 24 h,AO,
-SRV-02,Negocio,BusinessService,Crédito a 30 días,AO,
-SRV-03,Negocio,BusinessService,Atención de reclamo,AO,
-SRV-04,Negocio,BusinessService,Pedido en línea 24/7,O,
-BO-01,Negocio,BusinessObject,Cliente,AO,
-BO-02,Negocio,BusinessObject,Producto,AO,
-BO-03,Negocio,BusinessObject,Pedido,AO,
-BO-04,Negocio,BusinessObject,Comprobante,AO,
-BO-05,Negocio,BusinessObject,Ruta de despacho,AO,
-APP-01,Aplicación,ApplicationComponent,ERP (Compras · Ventas · Inventarios · Créditos · Contabilidad),AO,
-APP-02,Aplicación,ApplicationComponent,Portal B2B sin integración,A,Pedidos re-digitados en el ERP
-APP-02O,Aplicación,ApplicationComponent,Portal B2B integrado (web y móvil),O,Integrado al ERP y al stock en tiempo real
-APP-03,Aplicación,ApplicationComponent,WMS,AO,
-APP-04,Aplicación,ApplicationComponent,Sistema de planilla,AO,
-APP-05,Aplicación,ApplicationComponent,Facturación electrónica (OSE),AO,
-APP-06,Aplicación,ApplicationComponent,Hoja de cálculo de ruteo,A,Hoja de cálculo que funciona como sistema
-APP-07,Aplicación,ApplicationComponent,Hoja de cálculo comercial de clientes,A,Hoja de cálculo que funciona como sistema
-APP-08,Aplicación,ApplicationComponent,Hoja de cálculo de precios,A,Hoja de cálculo que funciona como sistema
-APP-09,Aplicación,ApplicationComponent,Hoja de cálculo de cobranza,A,Hoja de cálculo que funciona como sistema
-APP-10,Aplicación,ApplicationComponent,Hoja de cálculo de personal,A,Hoja de cálculo que funciona como sistema
-APP-11,Aplicación,ApplicationComponent,Hojas de cálculo de reportes gerenciales,A,Hoja de cálculo que funciona como sistema
-APP-12,Aplicación,ApplicationComponent,Correo corporativo,AO,
-APP-13,Aplicación,ApplicationComponent,Planificador de rutas integrado al WMS,O,
-APP-14,Aplicación,ApplicationComponent,Capa de integración (servicios publicados),O,
-APP-15,Aplicación,ApplicationComponent,Tablero de gestión,O,Sobre el maestro consolidado
-APP-16,Aplicación,ApplicationComponent,Mesa de atención de reclamos,O,
-ASV-01,Aplicación,ApplicationService,Registro de pedido,AO,
-ASV-02,Aplicación,ApplicationService,Consulta de stock,AO,
-ASV-03,Aplicación,ApplicationService,Emisión de comprobante,AO,
-ASV-04,Aplicación,ApplicationService,Planificación de rutas,O,
-ASV-05,Aplicación,ApplicationService,Servicio de pedidos y stock en línea,O,
-AIF-01,Aplicación,ApplicationInterface,Interfaz de archivo plano ERP-WMS,A,Lote nocturno (INT-01)
-AIF-02,Aplicación,ApplicationInterface,Interfaz web del portal,AO,
-AIF-03,Aplicación,ApplicationInterface,API de servicios publicados,O,
-DO-01,Aplicación,DataObject,Maestro de clientes (ERP),AO,
-DO-02,Aplicación,DataObject,Copia de clientes del portal,A,
-DO-03,Aplicación,DataObject,Base de clientes de la hoja comercial,A,
-DO-04,Aplicación,DataObject,Maestro de productos,AO,
-DO-05,Aplicación,DataObject,Lista de precios (hoja),A,
-DO-05O,Aplicación,DataObject,Lista de precios única (ERP),O,
-DO-06,Aplicación,DataObject,Registro de pedido,AO,
-DO-07,Aplicación,DataObject,Stock contable (ERP),A,
-DO-08,Aplicación,DataObject,Stock físico (WMS),A,
-DO-07O,Aplicación,DataObject,Stock autoritativo (WMS),O,
-DO-09,Aplicación,DataObject,Registro de actividades de tratamiento,O,D. S. 016-2024-JUS
-DO-10,Aplicación,DataObject,Registro de reclamo,O,
-NOD-01,Tecnología,Node,Servidor del ERP (local · único · plataforma en fin de soporte),A,
-NOD-01O,Tecnología,Node,Plataforma del ERP con soporte vigente,O,
-NOD-02,Tecnología,Node,VPS del portal (externo),AO,
-NOD-03,Tecnología,Node,Estaciones de trabajo,AO,
-NOD-04,Tecnología,Node,Dispositivos móviles (ventas y almacén),AO,
-NOD-05,Tecnología,Node,Nodo de contingencia,O,
+ACT-01,Negocio,BusinessActor,Ciudadano y contribuyente,AO,41 800 habitantes
+ACT-02,Negocio,BusinessActor,Mesa de partes,AO,
+ACT-03,Negocio,BusinessActor,Subgerencia de Administración Tributaria,AO,
+ACT-04,Negocio,BusinessActor,Subgerencia de Licencias,AO,
+ACT-05,Negocio,BusinessActor,Registro Civil,AO,
+ACT-06,Negocio,BusinessActor,Logística y Tesorería,AO,
+ACT-07,Negocio,BusinessActor,Recursos Humanos,AO,
+ACT-08,Negocio,BusinessActor,Unidad de TI (3 personas),AO,Reporta a Gerencia Municipal
+ACT-09,Negocio,BusinessActor,Comité de Gobierno Digital,O,R.M. 119-2018-PCM
+ROL-01,Negocio,BusinessRole,Administrado (solicitante),AO,
+ROL-02,Negocio,BusinessRole,Contribuyente,AO,
+ROL-03,Negocio,BusinessRole,Fiscalizador,AO,
+ROL-04,Negocio,BusinessRole,Dueño del dato,O,Designado por cargo para cada entidad (AP-02)
+ROL-05,Negocio,BusinessRole,Líder de Gobierno Digital,O,R.M. 119-2018-PCM
+PRO-01,Negocio,BusinessProcess,Trámite documentario y mesa de partes (el físico manda),A,1 340 expedientes sin estado tras la caída
+PRO-01O,Negocio,BusinessProcess,Trámite con expediente electrónico y mesa de partes digital,O,AP-05
+PRO-02,Negocio,BusinessProcess,Recaudación de tributos municipales,AO,
+PRO-03,Negocio,BusinessProcess,Licencias en hoja y archivo físico,A,
+PRO-03O,Negocio,BusinessProcess,Licencias con registro digital y plazos controlados,O,
+PRO-04,Negocio,BusinessProcess,Registro civil en papel,A,Sin sistema
+PRO-04O,Negocio,BusinessProcess,Registro civil digital integrado con RENIEC,O,
+PRO-05,Negocio,BusinessProcess,Contrataciones y logística,AO,
+PRO-06,Negocio,BusinessProcess,Atención al ciudadano por formulario y correo,A,
+PRO-06O,Negocio,BusinessProcess,Atención al ciudadano con seguimiento en línea,O,
+PRO-07,Negocio,BusinessProcess,Gestión de personal y planilla,AO,
+PRO-08,Negocio,BusinessProcess,Transparencia y acceso a la información,AO,
+PRO-09,Negocio,BusinessProcess,Gestión del gobierno digital y de TI,O,Plan de Gobierno Digital y PETI
+SRV-01,Negocio,BusinessService,Recepción y atención de trámites,AO,
+SRV-02,Negocio,BusinessService,Pago de tributos,AO,
+SRV-03,Negocio,BusinessService,Otorgamiento de licencias,AO,
+SRV-04,Negocio,BusinessService,Inscripción y certificados de registro civil,AO,
+SRV-05,Negocio,BusinessService,Acceso a la información pública,AO,
+SRV-06,Negocio,BusinessService,Servicios digitales en línea,O,
+BO-01,Negocio,BusinessObject,Contribuyente y predio,AO,
+BO-02,Negocio,BusinessObject,Expediente,AO,
+BO-03,Negocio,BusinessObject,Licencia de funcionamiento,AO,
+BO-04,Negocio,BusinessObject,Acta de registro civil,AO,
+BO-05,Negocio,BusinessObject,Trabajador,AO,
+BO-06,Negocio,BusinessObject,Pago a proveedor,AO,
+APP-01,Aplicación,ApplicationComponent,SIAF-SP (MEF),AO,Inventario: SIAF-SP
+APP-02,Aplicación,ApplicationComponent,Trámite documentario (desarrollo propio sin documentación),A,Inventario: Trámite documentario
+APP-02O,Aplicación,ApplicationComponent,Gestión documental con expediente electrónico y mesa de partes digital,O,Con soporte y código bajo control de la municipalidad (AP-04)
+APP-03,Aplicación,ApplicationComponent,Rentas y catastro (soporte vencido),A,Inventario: Rentas y catastro
+APP-03O,Aplicación,ApplicationComponent,Rentas y catastro con soporte vigente y fiscalización integrada,O,Contrato con niveles de servicio
+APP-04,Aplicación,ApplicationComponent,Portal de transparencia estándar (PCM),AO,Inventario: Portal de transparencia estándar
+APP-05,Aplicación,ApplicationComponent,Mesa de partes virtual (formulario web y correo),A,Inventario: Mesa de partes virtual
+APP-06,Aplicación,ApplicationComponent,Hoja de cálculo · Control de expedientes físicos,A,Inventario: Hoja de cálculo · Control de expedientes físicos
+APP-07,Aplicación,ApplicationComponent,Hoja de cálculo · Fiscalización predial,A,Inventario: Hoja de cálculo · Fiscalización predial
+APP-08,Aplicación,ApplicationComponent,Hoja de cálculo · Registro de licencias,A,Inventario: Hoja de cálculo · Registro de licencias
+APP-09,Aplicación,ApplicationComponent,AIRHSP (MEF),AO,Inventario: AIRHSP del MEF
+APP-10,Aplicación,ApplicationComponent,Planilla local,AO,Inventario: Planilla local
+APP-11,Aplicación,ApplicationComponent,Capa de interoperabilidad (servicios publicados y PIDE),O,AP-06
+APP-12,Aplicación,ApplicationComponent,Sistema de registro civil,O,Consulta a RENIEC vía PIDE
+APP-13,Aplicación,ApplicationComponent,Mesa de ayuda e inventario de activos de TI,O,"Incidentes, cambios y activos registrados"
+ASV-01,Aplicación,ApplicationService,Registro de expedientes,AO,
+ASV-02,Aplicación,ApplicationService,Emisión de recibos y cobro de tributos,AO,
+ASV-03,Aplicación,ApplicationService,Registro presupuestal y de pagos,AO,
+ASV-04,Aplicación,ApplicationService,Publicación de información de transparencia,AO,
+ASV-05,Aplicación,ApplicationService,Servicios de interoperabilidad,O,
+ASV-06,Aplicación,ApplicationService,Consulta del estado del trámite en línea,O,
+AIF-01,Aplicación,ApplicationInterface,Formulario web de mesa de partes,A,
+AIF-02,Aplicación,ApplicationInterface,Cliente del SIAF-SP,AO,
+AIF-03,Aplicación,ApplicationInterface,Conexión con la PIDE,O,
+AIF-04,Aplicación,ApplicationInterface,Mesa de partes digital (web),O,
+DO-01,Aplicación,DataObject,Padrón de contribuyentes y predios (Rentas),AO,
+DO-02,Aplicación,DataObject,Libro de fiscalización predial (hoja),A,
+DO-03,Aplicación,DataObject,Solicitudes recibidas por correo,A,
+DO-04,Aplicación,DataObject,Registro de expedientes del trámite,A,
+DO-04O,Aplicación,DataObject,Expediente electrónico único,O,
+DO-05,Aplicación,DataObject,Libro de control de expedientes físicos (hoja),A,
+DO-06,Aplicación,DataObject,Libro de licencias (hoja),A,
+DO-06O,Aplicación,DataObject,Registro digital de licencias,O,
+DO-07,Aplicación,DataObject,Registro de pagos del SIAF-SP,AO,
+DO-08,Aplicación,DataObject,Registro de personal (AIRHSP),AO,
+DO-09,Aplicación,DataObject,Registro de actividades de tratamiento,O,Ley 29733 · D. S. 016-2024-JUS
+DO-10,Aplicación,DataObject,Registro de actas de registro civil,O,
+DO-11,Aplicación,DataObject,Inventario de activos y registro de incidentes y cambios,O,
+DO-12,Aplicación,DataObject,Planilla local (CAS y locación),AO,
+NOD-01,Tecnología,Node,Servidor en la sede (trámite y rentas · sin autonomía de energía),A,
+NOD-01O,Tecnología,Node,Servidor de la sede con energía ininterrumpida y soporte,O,
+NOD-02,Tecnología,Node,Plataforma del MEF (SIAF-SP y AIRHSP),AO,
+NOD-03,Tecnología,Node,Hosting contratado (mesa de partes virtual),A,
+NOD-04,Tecnología,Node,Nube del Estado (PCM),AO,
+NOD-05,Tecnología,Node,Estaciones de trabajo (95),AO,
+NOD-06,Tecnología,Node,Sitio de respaldo fuera de la sede,O,
 TSV-01,Tecnología,TechnologyService,Base de datos,AO,
 TSV-02,Tecnología,TechnologyService,Servicio web,AO,
-TSV-03,Tecnología,TechnologyService,Respaldo diario en disco local,A,Sin prueba de restauración en 12 meses
-TSV-03O,Tecnología,TechnologyService,Respaldo verificado con copia inmutable,O,
-TSV-04,Tecnología,TechnologyService,Correo en la nube,AO,
-TSV-05,Tecnología,TechnologyService,Carpeta compartida de archivos,AO,
-NET-01,Tecnología,CommunicationNetwork,LAN de oficina,AO,
-NET-02,Tecnología,CommunicationNetwork,LAN y Wi-Fi del almacén,AO,
-NET-03,Tecnología,CommunicationNetwork,Enlace a internet,AO,
-AP-01,Motivación,Principle,AP-01 Dato único con dueño,AO,AR01_principios.md
-AP-02,Motivación,Principle,AP-02 Integración por servicios,AO,AR01_principios.md
+TSV-03,Tecnología,TechnologyService,Respaldo a disco local sin restauración probada,A,Nunca se restauró por completo
+TSV-03O,Tecnología,TechnologyService,Respaldo fuera de la sede con restauración probada,O,Copia inmutable
+TSV-04,Tecnología,TechnologyService,Correo institucional,AO,
+TSV-05,Tecnología,TechnologyService,Autenticación con segundo factor,O,
+NET-01,Tecnología,CommunicationNetwork,Red plana sin segmentación,A,
+NET-01O,Tecnología,CommunicationNetwork,Red segmentada por zonas,O,
+NET-02,Tecnología,CommunicationNetwork,Enlace a internet (un proveedor),AO,
+AP-01,Motivación,Principle,AP-01 Gobierno digital exigible primero,AO,AR01_principios.md
+AP-02,Motivación,Principle,AP-02 Dato único con dueño por cargo,AO,AR01_principios.md
 AP-03,Motivación,Principle,AP-03 Continuidad antes que funcionalidad,AO,AR01_principios.md
-AP-04,Motivación,Principle,AP-04 Privacidad y seguridad desde el diseño,AO,AR01_principios.md
-AP-05,Motivación,Principle,AP-05 Canal digital primero,AO,AR01_principios.md
-AP-06,Motivación,Principle,AP-06 Una hoja de cálculo no es un sistema de registro,AO,AR01_principios.md
-AP-07,Motivación,Principle,AP-07 Ningún sistema depende de una sola persona,AO,AR01_principios.md
+AP-04,Motivación,Principle,"AP-04 Ningún sistema crítico sin soporte, código ni documentación",AO,AR01_principios.md
+AP-05,Motivación,Principle,AP-05 El registro digital es la fuente,AO,AR01_principios.md
+AP-06,Motivación,Principle,AP-06 Interoperabilidad por servicios del Estado,AO,AR01_principios.md
+AP-07,Motivación,Principle,AP-07 Privacidad y seguridad desde el diseño,AO,AR01_principios.md
 PLT-01,Implementación,Plateau,Arquitectura actual (2026),AO,
 PLT-02,Implementación,Plateau,Arquitectura objetivo,AO,

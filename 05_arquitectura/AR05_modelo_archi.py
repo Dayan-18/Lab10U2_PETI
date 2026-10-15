@@ -1,4 +1,4 @@
-"""AR05 · Modelo ArchiMate 3.2 de DICOSUR en formato de Archi + vistas PNG (Taller 10, SI-886).
+"""AR05 · Modelo ArchiMate 3.2 de la Municipalidad Distrital de Alto Selva en formato de Archi + vistas PNG (Taller 10, SI-886).
 
 Construye el modelo a partir de los archivos de texto versionables:
   AR05_elementos.csv   elementos por capa, con su estado (A actual · O objetivo · AO ambos)
@@ -6,7 +6,7 @@ Construye el modelo a partir de los archivos de texto versionables:
   AR03_brechas.csv     (si existe) brechas y paquetes de trabajo de la capa de implementación
 
 y genera:
-  05_arquitectura/DICOSUR_arquitectura.archimate   modelo nativo de Archi (se abre con File > Open)
+  05_arquitectura/ALTOSELVA_arquitectura.archimate   modelo nativo de Archi (se abre con File > Open)
   graficos/V0x_*.png                               las vistas, dibujadas con las mismas coordenadas
                                                    que las vistas del modelo
 
@@ -28,7 +28,7 @@ BASE = Path(__file__).resolve().parent
 RAIZ = BASE.parent
 GRAFICOS = RAIZ / "graficos"
 GRAFICOS.mkdir(exist_ok=True)
-SALIDA_MODELO = BASE / "DICOSUR_arquitectura.archimate"
+SALIDA_MODELO = BASE / "ALTOSELVA_arquitectura.archimate"
 
 el = pd.read_csv(BASE / "AR05_elementos.csv", dtype=str).fillna("")
 rel = pd.read_csv(BASE / "AR05_relaciones.csv", dtype=str).fillna("")
@@ -87,14 +87,13 @@ def columna(ids, x0, y0, ancho=W, sep=14):
 
 
 NIVEL = dict(zip(*[pd.read_csv(BASE / "AR02_procesos_aplicacion.csv")[c] for c in ("id", "Nivel")]))
-COLOR_NIVEL = {"Bueno": "#b7e1b0", "Parcial": "#ffe08a", "Deficiente": "#f4a6a6"}
+COLOR_NIVEL = {"Bueno": "#b7e1b0", "Parcial": "#ffe08a", "Deficiente": "#f4a6a6", "Sin soporte": "#e06666"}
 ENT = pd.read_csv(BASE / "AR02_entidades.csv")
-SIN_FUENTE_DO = {"DO-01", "DO-02", "DO-03", "DO-05", "DO-07", "DO-08"}  # objetos de datos de entidades sin fuente autoritativa
+SIN_FUENTE_DO = {"DO-03", "DO-04", "DO-05", "DO-06"}  # objetos de datos de entidades sin fuente autoritativa digital
 
-PROC_A = ["PRO-01", "PRO-02", "PRO-03", "PRO-04", "PRO-05", "PRO-06", "PRO-07", "PRO-08", "PRO-09", "PRO-10"]
-PROC_O = ["PRO-01", "PRO-02O", "PRO-03", "PRO-04", "PRO-05", "PRO-06", "PRO-07", "PRO-08O", "PRO-09", "PRO-10"]
-APPS_A = [f"APP-{n:02d}" for n in range(1, 13)]
-APPS_O = ["APP-02O", "APP-01", "APP-03", "APP-13", "APP-05", "APP-04", "APP-16", "APP-15", "APP-12"]
+PROC_A = ["PRO-01", "PRO-02", "PRO-03", "PRO-04", "PRO-05", "PRO-06", "PRO-07", "PRO-08"]
+PROC_O = ["PRO-01O", "PRO-02", "PRO-03O", "PRO-04O", "PRO-05", "PRO-06O", "PRO-07", "PRO-08", "PRO-09"]
+NIVELES = pd.read_csv(BASE / "AR02_procesos_aplicacion.csv").Nivel.value_counts()
 
 VISTAS = []
 
@@ -103,17 +102,17 @@ VISTAS.append(dict(
     clave="V01", nombre="V01 Arquitectura actual — vista por capas", plateau="A", archivo="V01_arquitectura_actual_capas.png",
     rels={"Serving", "Flow", "Triggering", "Realization", "Association", "Assignment"},
     grupos=[
-        ("Capa de negocio", 10, 10, 1975, 250,
-         fila(["ACT-02", "ACT-03", "ACT-06", "ACT-05", "ROL-01", "ROL-02", "ROL-03"], 20, 30) +
-         fila(["SRV-01", "SRV-02", "SRV-03"], 1180, 30) +
-         fila(PROC_A, 20, 160, ancho=185, sep=12)),
-        ("Capa de aplicación", 10, 280, 1975, 260,
-         fila(["APP-08", "APP-02", "APP-01", "APP-03", "APP-06", "APP-05", "AIF-01", "AIF-02"], 20, 40, ancho=185, sep=12) +
-         fila(["APP-07", "APP-11", "APP-09", "APP-12", "APP-04", "APP-10"], 610, 170, ancho=185, sep=12)),
-        ("Capa de tecnología", 10, 560, 1975, 230,
-         fila(["NOD-01", "NOD-02", "NOD-03", "NOD-04"], 20, 30, ancho=210) +
-         fila(["TSV-01", "TSV-02", "TSV-03", "TSV-04", "TSV-05"], 920, 30, ancho=190) +
-         fila(["NET-01", "NET-02", "NET-03"], 20, 150, ancho=210)),
+        ("Capa de negocio", 10, 10, 1975, 290,
+         fila(["ACT-01", "ACT-02", "ACT-03", "ACT-04", "ACT-05", "ACT-06", "ACT-07", "ACT-08", "ROL-01", "ROL-02", "ROL-03"], 20, 30) +
+         fila(["SRV-01", "SRV-02", "SRV-03", "SRV-04", "SRV-05"], 20, 120, ancho=200, sep=40) +
+         fila(PROC_A, 20, 210, ancho=230, sep=12)),
+        ("Capa de aplicación", 10, 320, 1975, 290,
+         fila(["APP-05", "APP-02", "APP-03", "APP-01", "APP-04", "APP-09", "APP-10"], 20, 30, ancho=230, sep=40) +
+         fila(["APP-06", "APP-07", "APP-08", "AIF-01", "AIF-02"], 20, 120, ancho=230, sep=40) +
+         fila(["ASV-01", "ASV-02", "ASV-03", "ASV-04"], 20, 210, ancho=230, sep=40)),
+        ("Capa de tecnología", 10, 630, 1975, 210,
+         fila(["NOD-03", "NOD-01", "NOD-02", "NOD-04", "NOD-05"], 20, 30, ancho=260, sep=40) +
+         fila(["TSV-01", "TSV-02", "TSV-03", "TSV-04", "NET-01", "NET-02"], 20, 130, ancho=230, sep=40)),
     ]))
 
 # V02 · Cooperación proceso-aplicación
@@ -121,25 +120,31 @@ VISTAS.append(dict(
     clave="V02", nombre="V02 Cooperación proceso-aplicación (actual)", plateau="A", archivo="V02_cooperacion_proceso_aplicacion.png",
     rels={"Serving"}, color=lambda i: COLOR_NIVEL.get(NIVEL.get(i, ""), None),
     grupos=[
-        ("Procesos de la cadena de valor (color = nivel de soporte)", 10, 10, 330, 760, columna(PROC_A, 20, 35, ancho=290, sep=14)),
-        ("Aplicaciones que los soportan", 640, 10, 330, 900,
-         columna(["APP-01", "APP-02", "APP-08", "APP-03", "APP-06", "APP-05", "APP-09", "APP-12", "APP-07", "APP-11", "APP-04", "APP-10"],
-                 20, 35, ancho=290, sep=12)),
+        ("Procesos (color = nivel de soporte)", 10, 10, 330, 620, columna(PROC_A, 20, 35, ancho=290, sep=14)),
+        ("Aplicaciones que los soportan", 640, 10, 330, 770,
+         columna(["APP-02", "APP-06", "APP-03", "APP-07", "APP-08", "APP-01", "APP-05", "APP-09", "APP-10", "APP-04"],
+                 20, 35, ancho=290, sep=14)),
     ],
-    notas=[(10, 790, 330, 120, "Nivel de soporte\nVerde: bueno (4)\nAmarillo: parcial (2)\nRojo: deficiente o sin sistema (4 de 10)")]))
+    notas=[(10, 650, 330, 130, "Nivel de soporte\nVerde: bueno ({})\nAmarillo: parcial ({})\nRosado: deficiente ({})\nRojo: sin sistema ({})\nRegistro civil no tiene aplicación".format(
+        NIVELES.get("Bueno", 0), NIVELES.get("Parcial", 0), NIVELES.get("Deficiente", 0), NIVELES.get("Sin soporte", 0)))]))
 
 # V03 · Estructura de la información
 VISTAS.append(dict(
     clave="V03", nombre="V03 Estructura de la información (actual)", plateau="A", archivo="V03_estructura_informacion.png",
     rels={"Access", "Realization", "Assignment"}, color=lambda i: "#f4a6a6" if i in SIN_FUENTE_DO else None,
     grupos=[
-        ("Objetos de negocio", 10, 10, 1060, 110, fila(["BO-01", "BO-02", "BO-03", "BO-04", "BO-05"], 40, 35, ancho=180, sep=24)),
-        ("Objetos de datos (rojo = entidad sin fuente autoritativa)", 10, 150, 1060, 190,
-         fila(["DO-01", "DO-02", "DO-03", "DO-04"], 20, 35, ancho=240, sep=16) + fila(["DO-05", "DO-06", "DO-07", "DO-08"], 20, 115, ancho=240, sep=16)),
-        ("Aplicaciones que los mantienen", 10, 370, 1060, 110, fila(["APP-01", "APP-02", "APP-07", "APP-08", "APP-03"], 20, 35, ancho=190, sep=16)),
+        ("Objetos de negocio", 10, 10, 1500, 110, fila(["BO-01", "BO-02", "BO-03", "BO-05", "BO-06"], 40, 35, ancho=230, sep=60)),
+        ("Objetos de datos (rojo = entidad sin fuente autoritativa digital)", 10, 150, 1500, 190,
+         fila(["DO-01", "DO-02", "DO-03", "DO-04", "DO-05"], 20, 35, ancho=270, sep=22) +
+         fila(["DO-06", "DO-07", "DO-08", "DO-12"], 20, 115, ancho=270, sep=22)),
+        ("Aplicaciones que los mantienen", 10, 370, 1500, 110,
+         fila(["APP-03", "APP-07", "APP-05", "APP-02", "APP-06", "APP-08", "APP-01", "APP-09", "APP-10"], 20, 35, ancho=150, sep=13)),
     ],
-    notas=[(10, 500, 1060, 60, "5 de 10 entidades sin fuente autoritativa y 5 de 10 sin dueño (AR02_entidades.csv). "
-                               "El cliente reside en tres objetos de datos: ERP (8 400), portal (340) y hoja comercial (8 900).")]))
+    notas=[(10, 500, 1500, 60, "{} de {} entidades sin fuente autoritativa digital y {} de {} sin dueño (AR02_entidades.csv). "
+                               "El expediente reside en cuatro lugares (trámite, mesa de partes, hoja y archivo físico) y «el físico manda»; "
+                               "el acta de registro civil no tiene objeto de datos: solo existe en papel.".format(
+                                   ENT["¿Fuente autoritativa?"].str.startswith("Ninguna").sum(), len(ENT),
+                                   (ENT["Dueño del dato (cargo)"] == "Ninguno").sum(), len(ENT)))]))
 
 # V04 · Arquitectura objetivo por capas
 VISTAS.append(dict(
@@ -149,22 +154,21 @@ VISTAS.append(dict(
                     ("#f2e36b" if E[i].estado == "O" and E[i].capa == "Negocio" else
                      ("#93c47d" if E[i].estado == "O" and E[i].capa == "Tecnología" else None)),
     grupos=[
-        ("Capa de negocio", 10, 10, 1975, 250,
-         fila(["ACT-02", "ACT-03", "ACT-06", "ACT-05", "ROL-01", "ROL-02", "ROL-03", "ROL-04"], 20, 30) +
-         fila(["SRV-04", "SRV-01", "SRV-02", "SRV-03"], 1340, 30, ancho=150) +
-         fila(PROC_O, 20, 160, ancho=185, sep=12)),
-        ("Capa de aplicación", 10, 280, 1975, 290,
-         fila(APPS_O, 20, 40, ancho=200, sep=14) +
-         fila(["AIF-02", "AIF-03", "ASV-05", "ASV-04"], 20, 150, ancho=200, sep=14) +
-         fila(["APP-14"], 880, 150, ancho=420) +
-         fila(["DO-01", "DO-05O", "DO-07O", "DO-09", "DO-10"], 1330, 150, ancho=120, sep=8)),
-        ("Capa de tecnología", 10, 590, 1975, 230,
-         fila(["NOD-01O", "NOD-05", "NOD-02", "NOD-03", "NOD-04"], 20, 30, ancho=210) +
-         fila(["TSV-01", "TSV-02", "TSV-03O", "TSV-04", "TSV-05"], 1140, 30, ancho=160) +
-         fila(["NET-01", "NET-02", "NET-03"], 20, 150, ancho=210)),
+        ("Capa de negocio", 10, 10, 1975, 290,
+         fila(["ACT-09", "ACT-01", "ACT-02", "ACT-03", "ACT-04", "ACT-05", "ACT-06", "ACT-07", "ACT-08", "ROL-05", "ROL-04", "ROL-01"], 20, 30, ancho=150, sep=12) +
+         fila(["SRV-06", "SRV-01", "SRV-02", "SRV-03", "SRV-04", "SRV-05"], 20, 120, ancho=200, sep=40) +
+         fila(PROC_O, 20, 210, ancho=200, sep=12)),
+        ("Capa de aplicación", 10, 320, 1975, 300,
+         fila(["APP-02O", "APP-03O", "APP-12", "APP-13", "APP-01", "APP-09", "APP-10", "APP-04"], 20, 30, ancho=220, sep=18) +
+         fila(["AIF-04", "ASV-06", "ASV-05", "AIF-03"], 20, 120, ancho=220, sep=18) + fila(["APP-11"], 980, 120, ancho=700) +
+         fila(["DO-04O", "DO-01", "DO-06O", "DO-09", "DO-10", "DO-11", "DO-12"], 20, 215, ancho=240, sep=30)),
+        ("Capa de tecnología", 10, 640, 1975, 210,
+         fila(["NOD-01O", "NOD-06", "NOD-02", "NOD-04", "NOD-05"], 20, 30, ancho=260, sep=40) +
+         fila(["TSV-01", "TSV-02", "TSV-03O", "TSV-04", "TSV-05", "NET-01O", "NET-02"], 20, 130, ancho=230, sep=40)),
     ],
-    notas=[(10, 840, 1975, 50, "Tono intenso = elemento nuevo o modificado respecto de la arquitectura actual. "
-                               "Las integraciones pasan por la capa de integración (AP-02); ningún proceso crítico corre sobre hoja de cálculo (AP-06).")]))
+    notas=[(10, 870, 1975, 50, "Tono intenso = elemento nuevo o modificado respecto de la arquitectura actual. "
+                               "Las integraciones pasan por la capa de interoperabilidad (AP-06); ningún proceso corre sobre hoja de cálculo ni papel (AP-05); "
+                               "el Comité y el Líder de Gobierno Digital gobiernan el plan (AP-01).")]))
 
 # V05 · Brechas y paquetes de trabajo (si ya existe el análisis)
 if brechas is not None and paquetes is not None:
@@ -176,15 +180,15 @@ if brechas is not None and paquetes is not None:
         grupos=[
             ("Mesetas", 10, 10, 1975, 110, fila(["PLT-01"], 20, 35, ancho=300) + fila(["PLT-02"], 1640, 35, ancho=300)),
             ("Brechas (AR03_brechas.csv)", 10, 140, 1975, 190,
-             fila(gaps[:8], 20, 35, ancho=230, sep=14) + fila(gaps[8:], 20, 110, ancho=230, sep=14)),
-            ("Paquetes de trabajo (salida de AR03_brechas.py)", 10, 350, 1975, 120, fila(wps, 20, 40, ancho=205, sep=12)),
+             fila(gaps[:9], 20, 35, ancho=200, sep=14) + fila(gaps[9:], 20, 110, ancho=200, sep=14)),
+            ("Paquetes de trabajo (salida de AR03_brechas.py)", 10, 350, 1975, 120, fila(wps, 20, 40, ancho=228, sep=14)),
         ]))
 
 # ---------------------------------------------------------------- escritura del modelo .archimate
 def xml_modelo():
     out = ['<?xml version="1.0" encoding="UTF-8"?>',
            '<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
-           'xmlns:archimate="http://www.archimatetool.com/archimate" name="DICOSUR — Arquitectura empresarial (PETI v0.10)" '
+           'xmlns:archimate="http://www.archimatetool.com/archimate" name="Municipalidad Distrital de Alto Selva — Arquitectura empresarial (PETI v0.10)" '
            f'id="{uid("modelo")}" version="5.0.0">']
     for capa, tipo in CARPETA.items():
         out.append(f'  <folder name="{NOMBRE_CARPETA[tipo]}" id="{uid("carpeta", tipo)}" type="{tipo}">')
@@ -334,7 +338,7 @@ def dibuja(v):
 if __name__ == "__main__":
     SALIDA_MODELO.write_text(xml_modelo(), encoding="utf-8")
     print("=" * 72)
-    print("AR05 · MODELO ARCHIMATE DE DICOSUR")
+    print("AR05 · MODELO ARCHIMATE DE LA MUNICIPALIDAD DISTRITAL DE ALTO SELVA")
     print("=" * 72)
     for capa in CARPETA:
         sub = el[el.capa == capa]
