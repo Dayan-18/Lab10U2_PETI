@@ -543,7 +543,7 @@
     <element xsi:type="archimate:AssignmentRelationship" id="id-5d0cd2cb4a47b7c36dbacb82a073a2c6" source="id-014239fccb12b472a26e453bc875af43" target="id-975fb97df245c35fb8d2ca1a58e92e58"/>
     <element xsi:type="archimate:AssignmentRelationship" id="id-ad876b2d0a923ad468f008800d2a1970" source="id-bd4ccac7b18f1c05949fa97beb960ee0" target="id-fe3acfbc0718946106621869e6ca5387"/>
     <element xsi:type="archimate:AssignmentRelationship" id="id-7353febacb66ec304d71b2e18c607853" source="id-8bbe0f7b0267b20a15911e14c6c4a7b7" target="id-2dab7d93de9ba0c16a391410b512bd75"/>
-    <element xsi:type="archimate:AssignmentRelationship" id="id-d6fc3bec6d38d872f4dd5bd311cb780f" source="id-715eaa41a6218081078b4c009dccc4a0" target="id-ac7d282faadd74f6733693b287f869ca"/>
+    <element xsi:type="archimate:AssociationRelationship" name="responde por" id="id-d6fc3bec6d38d872f4dd5bd311cb780f" source="id-715eaa41a6218081078b4c009dccc4a0" target="id-ac7d282faadd74f6733693b287f869ca"/>
     <element xsi:type="archimate:TriggeringRelationship" id="id-66bd4994af6cb55837faf5941ddc2682" source="id-863b580596795d7256a7c2bc14d4e1aa" target="id-fe02dd3776e143351011b8fb70d6770a"/>
     <element xsi:type="archimate:TriggeringRelationship" id="id-4d4feb98f34233762043cd60c94a10a5" source="id-aed219a31c12e217e7f00b630e33fa65" target="id-fe02dd3776e143351011b8fb70d6770a"/>
     <element xsi:type="archimate:TriggeringRelationship" id="id-7d70db01072495690d35aef65dabf3ef" source="id-fe02dd3776e143351011b8fb70d6770a" target="id-05d35988b85783a255d8354ea0557a97"/>
