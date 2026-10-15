@@ -1,12 +1,10 @@
-88eaa55 (HEAD -> main) S10: ajusta las vistas previas de los anexos C y E
-7501ff1 S10: capturas de las salidas de consola, registro de git log y vistas previas de los anexos
-6338d93 S10: README con estructura, reproduccion y etiquetas
-8e57681 S10: anexos A-F (modelo, vistas, estructura de la informacion, brechas con formulas y seccion 5 en PDF)
-5df419a (tag: v0.10) S10: Paso E - seccion 5 del PETI (arquitectura empresarial) redactada
-ec73626 S10: Paso F - corrige la relacion invalida (dueño del dato como asociacion) y la validacion pasa
-3221b1b S10: Paso F - script de validacion y registro de la primera ejecucion (1 falla)
-9b2dc4d S10: Paso D - analisis de brechas (16), paquetes de trabajo (9) y secuencia obligada; vista V05 en el modelo
-7e49063 S10: Pasos B y C - modelo ArchiMate actual y objetivo (elementos, relaciones, 4 vistas) en formato de Archi
-13d598c S10: Paso B - estructura de la informacion (10 entidades) y cooperacion proceso-aplicacion
-4ef0b58 S10: Paso A - siete principios de arquitectura con declaracion, razon, implicancias y trazabilidad
-732d825 S10: estructura del repositorio e inventario de la arquitectura actual (insumo del caso)
+9c6616e (HEAD -> main) S10: README con el caso de Alto Selva, integrantes, estructura y reproduccion
+6f92efa S10: anexos A-F de Alto Selva (modelo, vistas, estructura de la informacion, brechas con formulas y seccion 5 en PDF)
+e1deff3 (tag: v0.10) S10: Paso E - seccion 5 del PETI (arquitectura empresarial) de Alto Selva redactada
+3b4a045 S10: Paso F - traza los procesos PRO-01, PRO-03, PRO-04 y PRO-06 a la ficha; la validacion pasa
+159055d S10: Paso F - validacion contra inventario y ficha; primera ejecucion con 1 falla (procesos sin trazar a la ficha)
+a2289c2 S10: Paso D - analisis de brechas (18), paquetes de trabajo (8) y secuencia obligada en 5 olas
+d57023f S10: Pasos B y C - modelo ArchiMate actual y objetivo de Alto Selva en formato de Archi y vistas V01-V05
+261b26b S10: Paso B - estructura de la informacion (8 entidades) y cooperacion proceso-aplicacion (8 procesos)
+b43650b S10: Paso A - siete principios de arquitectura de Alto Selva trazados a doce hallazgos de la ficha y el inventario
+7e462ce S10: cambia el caso a la Municipalidad Distrital de Alto Selva (Empresa 03): ficha e inventario de la arquitectura actual
