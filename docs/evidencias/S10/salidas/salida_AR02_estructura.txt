@@ -1,0 +1,44 @@
+==============================================================================
+AR02 · ESTRUCTURA DE LA INFORMACIÓN Y COOPERACIÓN PROCESO-APLICACIÓN · DICOSUR
+==============================================================================
+
+1. Vista de cooperación proceso-aplicación (actual)
+
+ PROCESO                        │ SISTEMA QUE LO SOPORTA                 │ NIVEL
+ ───────────────────────────────┼────────────────────────────────────────┼─────────────
+ Abastecimiento                 │ ERP Compras                            │ ✓ Bueno
+ Toma de pedido                 │ Teléfono + papel + Portal B2B (6 %)    │ ✗ Deficiente
+ Aprobación de crédito          │ ERP Créditos                           │ ✓ Bueno
+ Preparación del pedido         │ WMS + lectores de código de barras     │ ✓ Bueno
+ Ruteo y despacho               │ HOJA DE CÁLCULO de ruteo               │ ✗ Deficiente
+ Facturación                    │ ERP Ventas + facturación electrónica   │ ✓ Bueno
+ Cobranza                       │ ERP + hoja de cálculo de cobranza      │ ~ Parcial
+ Atención de reclamos           │ CORREO electrónico                     │ ✗ Deficiente
+ Análisis comercial y reportes  │ HOJAS DE CÁLCULO                       │ ✗ Deficiente
+ Gestión de personal y planilla │ Sistema de planilla + hoja de personal │ ~ Parcial
+
+  Procesos sin soporte o con soporte deficiente: 4 de 10  (Toma de pedido, Ruteo y despacho, Atención de reclamos, Análisis comercial y reportes)
+  Procesos con soporte parcial: 2 de 10  (Cobranza, Gestión de personal y planilla)
+  Hojas de cálculo que soportan procesos: 6 (APP-06, APP-07, APP-08, APP-09, APP-10, APP-11)
+
+2. Estructura de la información
+
+ Entidad              Registros por sistema   Fuente autoritativa  Dueño                         Personales
+ Cliente              8 400 / 340 / 8 900     Ninguna              Ninguno                       Sí
+ Producto             3 150 / 3 090 / 2 870   ERP                  Ninguno                       No
+ Precio               3 150 / 2 870 / 1 200   Ninguna              Ninguno                       No
+ Pedido               61 200 / 3 670 / 61 050 ERP                  Ninguno                       Sí (contacto)
+ Comprobante de pago  64 800 / 64 800         ERP                  Contador general              Sí (DNI de personas naturales)
+ Inventario (stock)   3 150 / 3 090           Ninguna              Jefe de almacén               No
+ Ruta de despacho     38 / 38                 Ninguna              Ninguno                       Sí (conductor)
+ Cuenta por cobrar    2 140 / 2 310           Ninguna              Jefe de créditos y cobranzas  Sí
+ Trabajador           48 / 52 / 48            Planilla             Jefe de RR. HH.               Sí, sensibles
+ Proveedor            410                     ERP                  Jefe de compras               No
+
+  Entidades sin fuente autoritativa: 5 de 10  (Cliente, Precio, Inventario (stock), Ruta de despacho, Cuenta por cobrar)
+  Entidades sin dueño de dato:       5 de 10  (Cliente, Producto, Precio, Pedido, Ruta de despacho)
+  Sin fuente y sin dueño a la vez:   3 de 10  (Cliente, Precio, Ruta de despacho)
+  Entidades con datos personales:    6 de 10  (Cliente, Pedido, Comprobante de pago, Ruta de despacho, Cuenta por cobrar, Trabajador)
+  Clasificación: Confidencial 5 · Interna 4 · Restringida 1
+
+  -> docs/evidencias/S10/salidas/AR02_indicadores.csv

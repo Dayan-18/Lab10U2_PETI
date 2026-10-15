@@ -1,0 +1,11 @@
+Entidad,Sistemas donde reside,N.º de registros por sistema,¿Fuente autoritativa?,Dueño del dato (cargo),Discrepancia observada,Clasificación,¿Contiene datos personales?,Fuente autoritativa objetivo,Dueño objetivo (cargo)
+Cliente,ERP; Portal B2B; Hoja comercial,8 400 / 340 / 8 900,Ninguna,Ninguno,500 clientes de la hoja no existen en el ERP; 340 del portal sin vínculo al código del ERP,Confidencial,Sí,Maestro de clientes del ERP,Gerente comercial
+Producto,ERP; WMS; Hoja de precios,3 150 / 3 090 / 2 870,ERP,Ninguno,60 SKU sin alta en el WMS; 280 sin precio en la hoja,Interna,No,Maestro de productos del ERP,Jefe de compras
+Precio,ERP; Hoja de precios; Portal B2B,3 150 / 2 870 / 1 200,Ninguna,Ninguno,214 precios de la hoja difieren del ERP,Interna,No,Lista de precios única del ERP,Gerente comercial
+Pedido,ERP; Portal B2B; WMS,61 200 / 3 670 / 61 050,ERP,Ninguno,150 pedidos del ERP sin orden de preparación en el WMS,Confidencial,Sí (contacto),Registro de pedido del ERP vía capa de integración,Jefe de ventas
+Comprobante de pago,ERP; Facturación electrónica,64 800 / 64 800,ERP,Contador general,0,Confidencial,Sí (DNI de personas naturales),ERP,Contador general
+Inventario (stock),ERP; WMS,3 150 / 3 090,Ninguna,Jefe de almacén,140 SKU con cantidades distintas al inicio del día,Interna,No,Stock del WMS publicado como servicio,Jefe de almacén
+Ruta de despacho,Hoja de ruteo; WMS (guías),38 / 38,Ninguna,Ninguno,Las guías del WMS no reflejan los cambios de ruta del día,Confidencial,Sí (conductor),Planificador de rutas integrado al WMS,Jefe de despacho
+Cuenta por cobrar,ERP; Hoja de cobranza,2 140 / 2 310,Ninguna,Jefe de créditos y cobranzas,170 acuerdos de pago registrados solo en la hoja,Confidencial,Sí,ERP (módulo Créditos),Jefe de créditos y cobranzas
+Trabajador,Planilla; ERP; Hoja de personal,48 / 52 / 48,Planilla,Jefe de RR. HH.,4 usuarios del ERP pertenecen a personal cesado,Restringida,"Sí, sensibles",Sistema de planilla,Jefe de RR. HH.
+Proveedor,ERP,410,ERP,Jefe de compras,0,Interna,No,ERP,Jefe de compras
