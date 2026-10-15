@@ -1,7 +1,7 @@
 Indicador,N,M
-Procesos con soporte deficiente,4,10
-Procesos con soporte parcial,2,10
-Entidades sin fuente autoritativa,5,10
-Entidades sin dueño,5,10
-Entidades sin fuente ni dueño,3,10
-Entidades con datos personales,6,10
+Procesos sin soporte o con soporte deficiente,4,8
+Procesos con soporte parcial,3,8
+Entidades sin fuente autoritativa,4,8
+Entidades sin dueño,5,8
+Entidades sin fuente ni dueño,2,8
+Entidades con datos personales,7,8

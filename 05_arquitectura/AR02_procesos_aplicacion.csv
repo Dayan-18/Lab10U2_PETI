@@ -1,11 +1,9 @@
 id,Proceso,Sistema que lo soporta,Aplicaciones,Nivel,Evidencia
-PRO-01,Abastecimiento,ERP Compras,APP-01,Bueno,Órdenes de compra y recepción registradas en el ERP
-PRO-02,Toma de pedido,Teléfono + papel + Portal B2B (6 %),APP-02; APP-08,Deficiente,94 % de los pedidos por teléfono o papel; los del portal se vuelven a digitar (INT-02)
-PRO-03,Aprobación de crédito,ERP Créditos,APP-01,Bueno,Límite de crédito por cliente controlado en el ERP
-PRO-04,Preparación del pedido,WMS + lectores de código de barras,APP-03,Bueno,Preparación con lectura de código; stock sincronizado de noche (INT-01)
-PRO-05,Ruteo y despacho,HOJA DE CÁLCULO de ruteo,APP-06,Deficiente,38 rutas armadas a mano cada noche; 22 % del costo operativo
-PRO-06,Facturación,ERP Ventas + facturación electrónica,APP-01; APP-05,Bueno,Comprobantes emitidos en línea (INT-04)
-PRO-07,Cobranza,ERP + hoja de cálculo de cobranza,APP-01; APP-09,Parcial,170 acuerdos de pago existen solo en la hoja
-PRO-08,Atención de reclamos,CORREO electrónico,APP-12,Deficiente,Sin registro ni seguimiento del reclamo
-PRO-09,Análisis comercial y reportes,HOJAS DE CÁLCULO,APP-07; APP-11,Deficiente,Reportes armados a mano en 3 días al cierre de cada mes
-PRO-10,Gestión de personal y planilla,Sistema de planilla + hoja de personal,APP-04; APP-10,Parcial,Planilla en sistema; datos de personal duplicados en hoja
+PRO-01,Trámite documentario y mesa de partes,Trámite documentario (sin soporte) + hoja de expedientes,APP-02; APP-06,Deficiente,Sin documentación ni soporte; el físico manda; 1 340 expedientes sin estado tras la caída
+PRO-02,Recaudación de tributos municipales,Rentas y catastro (sin soporte) + hoja de fiscalización,APP-03; APP-07,Parcial,Sistema operativo pero sin soporte; caído 9 días hábiles en 2025; se digita al SIAF-SP al cierre
+PRO-03,Licencias de funcionamiento y edificación,Rentas y catastro + HOJA DE LICENCIAS + archivo físico,APP-03; APP-08,Deficiente,La fuente es el archivo físico; plazos distintos en la hoja y en el trámite
+PRO-04,Registro civil,NINGUNO · papel y hojas de cálculo,—,Sin soporte,Actas solo en libros físicos; sin índice digital
+PRO-05,Contrataciones y logística,SIAF-SP (MEF),APP-01,Bueno,Sistema obligatorio con soporte del MEF
+PRO-06,Atención al ciudadano,Mesa de partes virtual (formulario + correo),APP-05,Deficiente,El correo se imprime y se vuelve a registrar; sin soporte
+PRO-07,Gestión de personal y planilla,AIRHSP (MEF) + Planilla local,APP-09; APP-10,Parcial,Los locadores no figuran en ningún sistema
+PRO-08,Transparencia y acceso a la información,Portal de transparencia estándar (PCM),APP-04,Parcial,La plataforma tiene soporte de la PCM pero se carga a mano
