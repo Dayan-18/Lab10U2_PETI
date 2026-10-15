@@ -74,13 +74,13 @@ def vista_previa(xlsx, hoja, columnas, anchos, png, titulo, filas=None):
     df = pd.read_excel(S10 / xlsx, sheet_name=hoja, header=3)[columnas].dropna(how="all")
     if filas:
         df = df.head(filas)
-    celdas = [[textwrap.fill(str(v), max(int(a * 0.8), 3)) for v, a in zip(fila, anchos)] for fila in df.itertuples(index=False)]
+    celdas = [[textwrap.fill(str(v), max(int(a * 1.25), 3), break_long_words=False) for v, a in zip(fila, anchos)] for fila in df.itertuples(index=False)]
     alto = sum(max(c.count("\n") + 1 for c in fila) for fila in celdas)
     fig = plt.figure(figsize=(10, 1.0 + alto * 0.21))
-    ax = fig.add_axes([0.01, 0.01, 0.98, 0.9])
+    ax = fig.add_axes([0.02, 0.01, 0.955, 0.9])
     ax.axis("off")
     fig.suptitle(titulo, fontsize=12, fontweight="bold", color="#1F2D5C", x=0.01, ha="left")
-    t = ax.table(cellText=celdas, colLabels=[textwrap.shorten(c, a + 2, placeholder="…") for c, a in zip(columnas, anchos)],
+    t = ax.table(cellText=celdas, colLabels=[textwrap.shorten(c, int(a * 1.5) + 3, placeholder="…") for c, a in zip(columnas, anchos)],
                  loc="upper left", cellLoc="left",
                  colWidths=[a / sum(anchos) for a in anchos])
     t.auto_set_font_size(False)
@@ -118,7 +118,7 @@ if __name__ == "__main__":
     print("AR07 · Vistas previas de los anexos:")
     vista_previa("anexo_C_estructura_informacion.xlsx", "Entidades",
                  ["Entidad", "N.º de registros por sistema", "¿Fuente autoritativa?", "Dueño del dato (cargo)", "Discrepancia observada", "Clasificación", "¿Contiene datos personales?"],
-                 [14, 16, 12, 18, 40, 11, 12], "preview_anexo_C.png", "Anexo C · anexo_C_estructura_informacion.xlsx · hoja Entidades (vista previa)")
+                 [11, 15, 9, 13, 30, 10, 11], "preview_anexo_C.png", "Anexo C · anexo_C_estructura_informacion.xlsx · hoja Entidades (vista previa)")
     vista_previa("anexo_E_analisis_brechas.xlsx", "Brechas", ["id", "capa", "brecha", "tipo", "esfuerzo_sem", "dependencias", "paquete"],
-                 [5, 10, 44, 9, 8, 16, 7], "preview_anexo_E.png", "Anexo E · anexo_E_analisis_brechas.xlsx · hoja Brechas (vista previa)")
+                 [4, 8, 36, 7, 5, 12, 5], "preview_anexo_E.png", "Anexo E · anexo_E_analisis_brechas.xlsx · hoja Brechas (vista previa)")
     vista_previa_pdf("anexo_F_seccion_5.pdf", "preview_anexo_F.png")
