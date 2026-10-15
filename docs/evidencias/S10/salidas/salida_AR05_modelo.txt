@@ -1,0 +1,16 @@
+========================================================================
+AR05 · MODELO ARCHIMATE DE DICOSUR
+========================================================================
+  Negocio          31 elementos  (actual 27 · objetivo 29)
+  Aplicación       37 elementos  (actual 25 · objetivo 24)
+  Tecnología       15 elementos  (actual 12 · objetivo 13)
+  Motivación        7 elementos  (actual  7 · objetivo  7)
+  Implementación    2 elementos  (actual  2 · objetivo  2)
+  Relaciones      130
+  Vistas            4
+
+  -> 05_arquitectura/DICOSUR_arquitectura.archimate
+  -> graficos/V01_arquitectura_actual_capas.png
+  -> graficos/V02_cooperacion_proceso_aplicacion.png
+  -> graficos/V03_estructura_informacion.png
+  -> graficos/V04_arquitectura_objetivo_capas.png
