@@ -1,0 +1,17 @@
+id,capa,brecha,elemento_actual,elemento_objetivo,tipo,esfuerzo_sem,dependencias,paquete,origen
+B-01,Tecnología,Plataforma del ERP sin soporte del fabricante,NOD-01,NOD-01O,Modificar,10,B-02,WP-01,AP-03 · A2 (3.3 PE-05) · E-05
+B-02,Tecnología,Respaldo sin prueba de restauración,TSV-03,TSV-03O,Modificar,3,,WP-01,AP-03 · D6 (3.1.4) · E-12
+B-03,Tecnología,Servidor único sin redundancia,NOD-01,NOD-05,Nuevo,5,B-01,WP-01,COBIT DSS04 (4.2) · D6 · E-12
+B-04,Datos,Sin registro de actividades de tratamiento,,DO-09,Nuevo,4,,WP-02,AP-04 · A3 (3.3 PE-09) · E-11
+B-05,Negocio,Sin dueños de dato designados,,ROL-04,Nuevo,2,B-04,WP-03,AP-01 · D7 (2.4)
+B-06,Datos,Cliente en tres lugares sin fuente ni dueño,DO-01; DO-02; DO-03,DO-01,Modificar,6,B-05; B-08,WP-03,AP-01 · D7 · E-09
+B-07,Datos,Precio sin fuente autoritativa,DO-05,DO-05O,Modificar,3,B-05,WP-03,AP-01 · AP-06
+B-08,Aplicación,Integración por archivo plano nocturno,AIF-01,APP-14; AIF-03,Nuevo,8,B-01,WP-04,AP-02 · D3 · D4
+B-09,Datos,Stock con dos versiones (ERP y WMS),DO-07; DO-08,DO-07O,Modificar,3,B-08,WP-03,AP-01 · AP-02
+B-10,Aplicación,Portal B2B sin integración,APP-02,APP-02O,Modificar,8,B-08; B-06; B-16,WP-05,Visión (2.2) · AP-05 · E-01
+B-11,Negocio,Toma de pedido por teléfono y papel,PRO-02,PRO-02O,Modificar,4,B-10,WP-05,AP-05 · D3 (3.1.1 CV-05) · E-08
+B-12,Aplicación,Ruteo en hoja de cálculo,APP-06,APP-13; ASV-04,Nuevo,7,B-08; B-09,WP-06,AP-06 · D4 (3.1.1 CV-03) · E-02
+B-13,Aplicación,Análisis comercial en hojas de cálculo,APP-11,APP-15,Nuevo,5,B-04; B-06; B-07,WP-07,D1 (3.1.5) · E-07
+B-14,Negocio,Reclamo por correo sin registro ni seguimiento,PRO-08,PRO-08O; APP-16,Nuevo,4,B-06,WP-08,ITIL / COBIT DSS02 (4.2) · A1 · E-06
+B-15,Aplicación,Hojas de clientes · precios · cobranza y personal operan como sistema,APP-07; APP-08; APP-09; APP-10,,Retirar,3,B-06; B-07; B-13,WP-07,AP-06
+B-16,Aplicación,Portal dependiente de un solo desarrollador,APP-02,APP-02O,Modificar,3,,WP-09,AP-07 · D2 (3.1.3) · E-10

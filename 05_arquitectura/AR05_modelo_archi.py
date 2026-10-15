@@ -168,11 +168,11 @@ VISTAS.append(dict(
 
 # V05 · Brechas y paquetes de trabajo (si ya existe el análisis)
 if brechas is not None and paquetes is not None:
-    gaps = brechas.id.tolist()
     wps = paquetes.paquete.tolist()
+    gaps = brechas.assign(o=brechas.paquete.map({w: k for k, w in enumerate(wps)})).sort_values(["o", "id"]).id.tolist()
     VISTAS.append(dict(
         clave="V05", nombre="V05 Brechas y paquetes de trabajo", plateau="AO", archivo="V05_brechas_paquetes.png",
-        rels={"Association"},
+        rels={"Association"}, filtro=lambda r: r.origen.startswith("WP-"),
         grupos=[
             ("Mesetas", 10, 10, 1975, 110, fila(["PLT-01"], 20, 35, ancho=300) + fila(["PLT-02"], 1640, 35, ancho=300)),
             ("Brechas (AR03_brechas.csv)", 10, 140, 1975, 190,
@@ -220,7 +220,7 @@ def objetos_vista(v):
             pos[i] = (gx + x, gy + y, w, h, g)
     visibles = []
     for r in rel.itertuples():
-        if r.origen in pos and r.destino in pos and r.tipo in v["rels"]:
+        if r.origen in pos and r.destino in pos and r.tipo in v["rels"] and v.get("filtro", lambda r: True)(r):
             if v["plateau"] == "AO" or rel_en(r, v["plateau"]):
                 visibles.append(r)
     return pos, visibles

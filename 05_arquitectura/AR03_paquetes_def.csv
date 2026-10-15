@@ -1,0 +1,10 @@
+paquete,nombre,proyecto
+WP-01,Continuidad y plataforma del ERP,P-01 · P-03
+WP-02,Cumplimiento de datos personales,P-02
+WP-03,Gobierno del dato y maestros,P-08 · P-06 (gobierno)
+WP-04,Capa de integración por servicios,P-12 (nuevo · propuesto para 7.1)
+WP-05,Canal digital integrado,P-04 · P-07
+WP-06,Ruteo y trazabilidad de despacho,P-05
+WP-07,Analítica y retiro de hojas de cálculo,P-06
+WP-08,Atención de reclamos con trazabilidad,P-11
+WP-09,Gestión del conocimiento del portal,P-09
