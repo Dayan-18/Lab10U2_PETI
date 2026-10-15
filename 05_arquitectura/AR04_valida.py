@@ -1,13 +1,14 @@
-"""AR04 · Paso F — Validar y corregir — DICOSUR (Taller 10, SI-886).
+"""AR04 · Paso F — Validar y corregir — Municipalidad Distrital de Alto Selva (Taller 10, SI-886).
 
-Ejecuta sobre el archivo de Archi (DICOSUR_arquitectura.archimate) las tres
+Ejecuta sobre el archivo de Archi (ALTOSELVA_arquitectura.archimate) las tres
 comprobaciones del taller y termina con código 1 si alguna falla:
   1. Los elementos están en la capa que les corresponde (carpeta de Archi y tipo
      ArchiMate), las relaciones son válidas en ArchiMate 3.2 y ningún nombre lleva
      detalle técnico sensible (IP, versiones exactas, credenciales).
   2. Toda aplicación del modelo actual existe de verdad en la organización
-     (inventario docs/caso/arquitectura-actual.md) y toda hoja de cálculo del
-     inventario está modelada como componente de aplicación.
+     (inventario docs/caso/arquitectura-actual.md), toda hoja de cálculo del
+     inventario está modelada como componente de aplicación y todo proceso de la
+     ficha (FICHA.md, sección D) está en el modelo actual con su nombre de origen.
   3. Cada brecha del análisis se puede señalar en los dos modelos: su elemento
      actual está en la arquitectura actual y su elemento objetivo en la objetivo.
 
@@ -25,8 +26,9 @@ BASE = Path(__file__).resolve().parent
 RAIZ = BASE.parent
 XSI = "{http://www.w3.org/2001/XMLSchema-instance}type"
 
-arbol = ET.parse(BASE / "DICOSUR_arquitectura.archimate").getroot()
+arbol = ET.parse(BASE / "ALTOSELVA_arquitectura.archimate").getroot()
 inventario = (RAIZ / "docs" / "caso" / "arquitectura-actual.md").read_text(encoding="utf-8")
+ficha = (RAIZ / "docs" / "caso" / "FICHA.md").read_text(encoding="utf-8")
 brechas = pd.read_csv(BASE / "AR03_brechas.csv", dtype=str).fillna("")
 
 CAPA_DE_TIPO = {
@@ -89,7 +91,7 @@ actual = lambda v: "actual" in v["estado"]
 objetivo = lambda v: "objetivo" in v["estado"]
 
 print("=" * 76)
-print("AR04 · VALIDACIÓN DEL TALLER 10 · DICOSUR")
+print("AR04 · VALIDACIÓN DEL TALLER 10 · MUNICIPALIDAD DISTRITAL DE ALTO SELVA")
 print("=" * 76)
 print(f"  Modelo: {len(elementos)} elementos · {len(relaciones)} relaciones · "
       f"{sum(1 for e in arbol.iter('element') if e.get(XSI) == 'archimate:ArchimateDiagramModel')} vistas")
@@ -113,18 +115,30 @@ registra(not expuestos, f"{len(expuestos)} elementos con detalle técnico sensib
 
 # ---------------------------------------------------------------- 2
 print("\nComprobación 2 · Toda aplicación del modelo actual existe en la organización")
-inv_apps = dict(re.findall(r"^\| (APP-\d\d) \| ([^|]+?) \|", inventario, flags=re.M))
-inv_hojas = {c for c, fila in re.findall(r"^\| (APP-\d\d) \|(.+)$", inventario, flags=re.M) if "Hoja de cálculo" in fila}
+# Aplicaciones de la sección 2 del inventario (primera columna, en negrita) y sistemas citados en la sección 5
+sec2 = inventario.split("## 2.")[1].split("## 3.")[0]
+inv_apps = [n.strip() for n in re.findall(r"^\| \*\*([^*]+)\*\* \|", sec2, flags=re.M)]
+inv_hojas = {n for n in inv_apps if n.startswith("Hoja de cálculo")}
+ref = lambda v: v["doc"].split("Inventario:", 1)[1].strip() if "Inventario:" in v["doc"] else ""
 apps_actual = {v["codigo"]: v for v in elementos.values() if v["tipo"] == "ApplicationComponent" and actual(v)}
-inexistentes = [f"{c} {v['nombre']}" for c, v in apps_actual.items() if c not in inv_apps]
-registra(not inexistentes, f"{len(apps_actual) - len(inexistentes)}/{len(apps_actual)} componentes actuales existen en el inventario"
+inexistentes = [f"{c} {v['nombre']}" for c, v in apps_actual.items() if not ref(v) or ref(v) not in inventario]
+registra(not inexistentes, f"{len(apps_actual) - len(inexistentes)}/{len(apps_actual)} componentes actuales existen en el inventario de la organización"
          + (f" · no existen: {', '.join(inexistentes)}" if inexistentes else ""))
-faltan = [c for c in inv_apps if c not in apps_actual]
-registra(not faltan, f"{len(inv_apps) - len(faltan)}/{len(inv_apps)} aplicaciones del inventario están en el modelo actual"
+modelados = {ref(v) for v in apps_actual.values()}
+faltan = [n for n in inv_apps if not any(n.startswith(m) for m in modelados if m)]
+registra(not faltan, f"{len(inv_apps) - len(faltan)}/{len(inv_apps)} aplicaciones de la sección 2 del inventario están en el modelo actual"
          + (f" · faltan: {', '.join(faltan)}" if faltan else ""))
-hojas_ok = [c for c in inv_hojas if por_codigo.get(c, {}).get("tipo") == "ApplicationComponent"]
+hojas_ok = [n for n in inv_hojas if any(n.startswith(ref(v)) for v in apps_actual.values() if ref(v))]
 registra(len(hojas_ok) == len(inv_hojas), f"{len(hojas_ok)}/{len(inv_hojas)} hojas de cálculo modeladas como componentes de aplicación"
          + (f" · mal modeladas: {', '.join(sorted(inv_hojas - set(hojas_ok)))}" if len(hojas_ok) != len(inv_hojas) else ""))
+
+sec_d = ficha.split("## D.")[1].split("## E.")[0]
+procesos_ficha = [n.strip() for n in re.findall(r"^\| \d+ \| ([^|]+?) \|", sec_d, flags=re.M)]
+procesos_modelo = [v for v in elementos.values() if v["tipo"] == "BusinessProcess" and actual(v)]
+sin_proceso = [n for n in procesos_ficha
+               if not any(n == v["nombre"] or f"Ficha: {n}" in v["doc"] for v in procesos_modelo)]
+registra(not sin_proceso, f"{len(procesos_ficha) - len(sin_proceso)}/{len(procesos_ficha)} procesos de la ficha (sección D) trazados en el modelo actual"
+         + (f" · sin trazar: {', '.join(sin_proceso)}" if sin_proceso else ""))
 
 # ---------------------------------------------------------------- 3
 print("\nComprobación 3 · Cada brecha se puede señalar en los dos modelos")
@@ -142,10 +156,10 @@ for b in brechas.itertuples():
     for c in obj:
         if c not in por_codigo or not objetivo(por_codigo[c]):
             sin_señal.append(f"{b.id}: {c} no está en el modelo objetivo")
-    if b.tipo == "Retirar":
+    if b.tipo in ("Retirar", "Reemplazar"):
         for c in act:
             if c in por_codigo and objetivo(por_codigo[c]):
-                sin_señal.append(f"{b.id}: {c} se retira pero sigue en el modelo objetivo")
+                sin_señal.append(f"{b.id}: {c} se retira o reemplaza pero sigue en el modelo objetivo")
 registra(not sin_señal, f"{len(brechas)} brechas · {len(sin_señal)} sin señalar en los dos modelos"
          + (f": {'; '.join(sin_señal)}" if sin_señal else ""))
 gaps_modelo = {v["codigo"] for v in elementos.values() if v["tipo"] == "Gap"}
