@@ -92,7 +92,7 @@ print("=" * 76)
 print("AR04 · VALIDACIÓN DEL TALLER 10 · DICOSUR")
 print("=" * 76)
 print(f"  Modelo: {len(elementos)} elementos · {len(relaciones)} relaciones · "
-      f"{len(arbol.findall('.//element[@name]')) - len(elementos) - sum(1 for r in relaciones)} vistas")
+      f"{sum(1 for e in arbol.iter('element') if e.get(XSI) == 'archimate:ArchimateDiagramModel')} vistas")
 
 # ---------------------------------------------------------------- 1
 print("\nComprobación 1 · Cada elemento está en la capa que le corresponde")
