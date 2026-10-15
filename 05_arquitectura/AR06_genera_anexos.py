@@ -1,4 +1,4 @@
-"""AR06 · Anexos A–F del informe — DICOSUR (Taller 10, SI-886).
+"""AR06 · Anexos A–F del informe — Municipalidad Distrital de Alto Selva (Taller 10, SI-886).
 
 Genera en docs/evidencias/S10/:
   anexo_A_modelo_arquitectura.archimate   copia del modelo de Archi (Restringido)
@@ -43,7 +43,7 @@ ROJO = PatternFill("solid", fgColor="F4C7C3")
 def hoja(ws, df, anchos, titulo):
     ws.append([titulo])
     ws["A1"].font = Font(bold=True, size=13, color=AZUL)
-    ws.append(["DICOSUR · PETI v0.10 · Restringido · Taller 10 SI-886"])
+    ws.append(["Municipalidad Distrital de Alto Selva · PETI v0.10 · Restringido · Taller 10 SI-886"])
     ws["A2"].font = Font(italic=True, color="666666")
     ws.append([])
     ws.append(list(df.columns))
@@ -72,7 +72,7 @@ def anexo_c():
     hoja(ws, ent, [20, 30, 22, 18, 24, 40, 14, 18, 34, 24], "Anexo C · Estructura de la información (AR02_entidades.csv)")
     n = 4 + len(ent)
     for fila in ws.iter_rows(min_row=5, max_row=n):
-        if fila[3].value == "Ninguna":
+        if str(fila[3].value).startswith("Ninguna"):
             fila[3].fill = ROJO
         if fila[4].value == "Ninguno":
             fila[4].fill = ROJO
@@ -88,11 +88,11 @@ def anexo_c():
     for c in ws3[4]:
         c.font, c.fill, c.border = CAB, FONDO, BORDE
     filas = [
-        ("Entidades sin fuente autoritativa", f'=COUNTIF(Entidades!D5:D{n},"Ninguna")', f"=COUNTA(Entidades!A5:A{n})"),
+        ("Entidades sin fuente autoritativa", f'=COUNTIF(Entidades!D5:D{n},"Ninguna*")', f"=COUNTA(Entidades!A5:A{n})"),
         ("Entidades sin dueño de dato", f'=COUNTIF(Entidades!E5:E{n},"Ninguno")', f"=COUNTA(Entidades!A5:A{n})"),
-        ("Entidades sin fuente ni dueño", f'=COUNTIFS(Entidades!D5:D{n},"Ninguna",Entidades!E5:E{n},"Ninguno")', f"=COUNTA(Entidades!A5:A{n})"),
+        ("Entidades sin fuente ni dueño", f'=COUNTIFS(Entidades!D5:D{n},"Ninguna*",Entidades!E5:E{n},"Ninguno")', f"=COUNTA(Entidades!A5:A{n})"),
         ("Entidades con datos personales", f'=COUNTIF(Entidades!H5:H{n},"Sí*")', f"=COUNTA(Entidades!A5:A{n})"),
-        ("Procesos con soporte deficiente", f'=COUNTIF(Cooperación!E5:E{m},"Deficiente")', f"=COUNTA(Cooperación!A5:A{m})"),
+        ("Procesos sin soporte o con soporte deficiente", f'=COUNTIF(Cooperación!E5:E{m},"Deficiente")+COUNTIF(Cooperación!E5:E{m},"Sin soporte")', f"=COUNTA(Cooperación!A5:A{m})"),
         ("Procesos con soporte parcial", f'=COUNTIF(Cooperación!E5:E{m},"Parcial")', f"=COUNTA(Cooperación!A5:A{m})"),
     ]
     for f in filas:
@@ -127,19 +127,19 @@ def anexo_e():
     ws3["A1"].font = Font(bold=True, size=13, color=AZUL)
     ws3.append([])
     ws3.append([])
-    ws3.append(["Capa", "Nuevo", "Modificar", "Retirar", "Total", "Esfuerzo (sem-p)"])
+    ws3.append(["Capa", "Nuevo", "Modificar", "Reemplazar", "Retirar", "Total", "Esfuerzo (sem-p)"])
     for c in ws3[4]:
         c.font, c.fill, c.border = CAB, FONDO, BORDE
     for k, capa in enumerate(["Negocio", "Datos", "Aplicación", "Tecnología"], start=5):
-        ws3.append([capa] + [f'=COUNTIFS(Brechas!$B$5:$B${n},$A{k},Brechas!$F$5:$F${n},"{t}")' for t in ("Nuevo", "Modificar", "Retirar")]
-                   + [f"=SUM(B{k}:D{k})", f"=SUMIF(Brechas!$B$5:$B${n},$A{k},Brechas!$G$5:$G${n})"])
-    ws3.append(["Total"] + [f"=SUM({c}5:{c}8)" for c in "BCDEF"])
+        ws3.append([capa] + [f'=COUNTIFS(Brechas!$B$5:$B${n},$A{k},Brechas!$F$5:$F${n},"{t}")' for t in ("Nuevo", "Modificar", "Reemplazar", "Retirar")]
+                   + [f"=SUM(B{k}:E{k})", f"=SUMIF(Brechas!$B$5:$B${n},$A{k},Brechas!$G$5:$G${n})"])
+    ws3.append(["Total"] + [f"=SUM({c}5:{c}8)" for c in "BCDEFG"])
     for fila in ws3.iter_rows(min_row=5, max_row=9):
         for c in fila:
             c.border = BORDE
     ws3["A9"].font = Font(bold=True)
     ws3.column_dimensions["A"].width = 16
-    ws3.column_dimensions["F"].width = 16
+    ws3.column_dimensions["G"].width = 16
     wb.save(S10 / "anexo_E_analisis_brechas.xlsx")
     print("  docs/evidencias/S10/anexo_E_analisis_brechas.xlsx")
 
@@ -240,7 +240,7 @@ def anexo_f():
     doc.styles["Normal"].font.name = "Arial"
     doc.styles["Normal"].font.size = Pt(9.5)
     t = doc.add_paragraph()
-    r = t.add_run("Anexo F · PETI DICOSUR v0.10 · Sección 5 Arquitectura empresarial")
+    r = t.add_run("Anexo F · PETI Municipalidad Distrital de Alto Selva v0.10 · Sección 5 Arquitectura empresarial")
     r.bold = True
     r.font.size = Pt(15)
     r.font.color.rgb = RGBColor(0x1F, 0x2D, 0x5C)
@@ -258,7 +258,7 @@ def anexo_f():
 
 if __name__ == "__main__":
     print("AR06 · Anexos generados:")
-    copia(BASE / "DICOSUR_arquitectura.archimate", "anexo_A_modelo_arquitectura.archimate")
+    copia(BASE / "ALTOSELVA_arquitectura.archimate", "anexo_A_modelo_arquitectura.archimate")
     copia(GRAFICOS / "V02_cooperacion_proceso_aplicacion.png", "anexo_B_vista_proceso_aplicacion.png")
     anexo_c()
     copia(GRAFICOS / "V04_arquitectura_objetivo_capas.png", "anexo_D_arquitectura_objetivo.png")

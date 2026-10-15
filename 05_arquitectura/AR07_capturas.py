@@ -1,4 +1,4 @@
-"""AR07 · Capturas de las salidas de consola y vistas previas de anexos — DICOSUR (Taller 10, SI-886).
+"""AR07 · Capturas de las salidas de consola y vistas previas de anexos — Municipalidad Distrital de Alto Selva (Taller 10, SI-886).
 
 Convierte cada salida registrada en docs/evidencias/S10/salidas/*.txt en una
 imagen PNG con estilo de terminal (docs/evidencias/S10/capturas/), para que el
@@ -120,5 +120,5 @@ if __name__ == "__main__":
                  ["Entidad", "N.º de registros por sistema", "¿Fuente autoritativa?", "Dueño del dato (cargo)", "Discrepancia observada", "Clasificación", "¿Contiene datos personales?"],
                  [11, 15, 9, 13, 30, 10, 11], "preview_anexo_C.png", "Anexo C · anexo_C_estructura_informacion.xlsx · hoja Entidades (vista previa)")
     vista_previa("anexo_E_analisis_brechas.xlsx", "Brechas", ["id", "capa", "brecha", "tipo", "esfuerzo_sem", "dependencias", "paquete"],
-                 [4, 8, 36, 7, 5, 12, 5], "preview_anexo_E.png", "Anexo E · anexo_E_analisis_brechas.xlsx · hoja Brechas (vista previa)")
+                 [4, 8, 36, 9, 5, 12, 5], "preview_anexo_E.png", "Anexo E · anexo_E_analisis_brechas.xlsx · hoja Brechas (vista previa)")
     vista_previa_pdf("anexo_F_seccion_5.pdf", "preview_anexo_F.png")
