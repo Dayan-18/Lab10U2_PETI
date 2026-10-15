@@ -1,47 +1,47 @@
 ============================================================================
-AR03 · ANÁLISIS DE BRECHAS Y PAQUETES DE TRABAJO · DICOSUR
+AR03 · ANÁLISIS DE BRECHAS Y PAQUETES DE TRABAJO · ALTO SELVA
 ============================================================================
 
-1. Brechas por capa y tipo (16 brechas · 78 semanas-persona)
+1. Brechas por capa y tipo (18 brechas · 76 semanas-persona)
 
-tipo        Modificar  Nuevo  Retirar  Total
-capa                                        
-Negocio             1      2        0      3
-Datos               3      1        0      4
-Aplicación          2      3        1      6
-Tecnología          2      1        0      3
-Total               8      7        1     16
+tipo        Nuevo  Modificar  Reemplazar  Retirar  Total
+capa                                                    
+Negocio         5          2           0        0      7
+Datos           1          2           0        0      3
+Aplicación      1          1           2        1      5
+Tecnología      0          3           0        0      3
+Total           7          8           2        1     18
 
 2. Paquetes de trabajo derivados de las brechas
 
-  WP-01  Continuidad y plataforma del ERP         3 brechas   18 sem-p  -> P-01 · P-03
+  WP-01  Gobierno digital y de TI                   3 brechas   10 sem-p  -> P-01 Comité · Líder y Plan de Gobierno Digital
          brechas: B-01; B-02; B-03 · sin dependencias
-  WP-02  Cumplimiento de datos personales         1 brechas    4 sem-p  -> P-02
-         brechas: B-04 · sin dependencias
-  WP-09  Gestión del conocimiento del portal      1 brechas    3 sem-p  -> P-09
-         brechas: B-16 · sin dependencias
-  WP-04  Capa de integración por servicios        1 brechas    8 sem-p  -> P-12 (nuevo · propuesto para 7.1)
-         brechas: B-08 · depende de: WP-01
-  WP-03  Gobierno del dato y maestros             4 brechas   14 sem-p  -> P-08 · P-06 (gobierno)
-         brechas: B-05; B-06; B-07; B-09 · depende de: WP-02; WP-04
-  WP-05  Canal digital integrado                  2 brechas   12 sem-p  -> P-04 · P-07
-         brechas: B-10; B-11 · depende de: WP-03; WP-04; WP-09
-  WP-06  Ruteo y trazabilidad de despacho         1 brechas    7 sem-p  -> P-05
-         brechas: B-12 · depende de: WP-03; WP-04
-  WP-07  Analítica y retiro de hojas de cálculo   2 brechas    8 sem-p  -> P-06
-         brechas: B-13; B-15 · depende de: WP-02; WP-03
-  WP-08  Atención de reclamos con trazabilidad    1 brechas    4 sem-p  -> P-11
-         brechas: B-14 · depende de: WP-03
+  WP-04  Continuidad de la infraestructura          2 brechas    7 sem-p  -> P-04 Respaldo verificado y continuidad
+         brechas: B-05; B-06 · sin dependencias
+  WP-02  Protección de datos y seguridad            2 brechas    7 sem-p  -> P-02 Registro de tratamientos y seguridad de la información
+         brechas: B-04; B-16 · depende de: WP-01; WP-04
+  WP-05  Recuperación de sistemas críticos          2 brechas   18 sem-p  -> P-05 Rentas con soporte y gestión documental
+         brechas: B-07; B-08 · depende de: WP-04
+  WP-08  Gestión de servicios de TI                 1 brechas    3 sem-p  -> P-08 Mesa de ayuda · cambios e inventario de activos
+         brechas: B-17 · depende de: WP-01
+  WP-07  Interoperabilidad con el Estado            1 brechas    6 sem-p  -> P-07 Capa de interoperabilidad y conexión a la PIDE
+         brechas: B-12 · depende de: WP-05
+  WP-06  Servicios digitales al ciudadano           4 brechas   16 sem-p  -> P-06 Mesa de partes · licencias y registro civil digitales
+         brechas: B-11; B-13; B-14; B-18 · depende de: WP-02; WP-05; WP-07
+  WP-03  Fuentes autoritativas y retiro de hojas    3 brechas    9 sem-p  -> P-03 Gobierno del dato municipal
+         brechas: B-09; B-10; B-15 · depende de: WP-01; WP-05; WP-06
 
 3. Secuencia obligada por dependencias
 
-  Ola 1: WP-01 Continuidad y plataforma del ERP · WP-02 Cumplimiento de datos personales · WP-09 Gestión del conocimiento del portal
-  Ola 2: WP-04 Capa de integración por servicios
-  Ola 3: WP-03 Gobierno del dato y maestros
-  Ola 4: WP-05 Canal digital integrado · WP-06 Ruteo y trazabilidad de despacho · WP-07 Analítica y retiro de hojas de cálculo · WP-08 Atención de reclamos con trazabilidad
+  Ola 1: WP-01 Gobierno digital y de TI · WP-04 Continuidad de la infraestructura
+  Ola 2: WP-02 Protección de datos y seguridad · WP-05 Recuperación de sistemas críticos · WP-08 Gestión de servicios de TI
+  Ola 3: WP-07 Interoperabilidad con el Estado
+  Ola 4: WP-06 Servicios digitales al ciudadano
+  Ola 5: WP-03 Fuentes autoritativas y retiro de hojas
 
-  Ruta crítica por esfuerzo: WP-01 → WP-04 → WP-03 → WP-05 = 52 semanas-persona
-  Regla verificada: WP-07 (analítica) queda después de WP-03 (gobierno del dato) y WP-02 (cumplimiento)
+  Ruta crítica por esfuerzo: WP-04 → WP-05 → WP-07 → WP-06 → WP-03 = 56 semanas-persona
+  Regla verificada: WP-01 (gobierno digital) y WP-04 (continuidad) abren la secuencia (AP-01 · AP-03)
+  Regla verificada: WP-06 (servicios al ciudadano) queda después de WP-02 (datos personales) y WP-07 (interoperabilidad)
 
   -> 05_arquitectura/AR03_paquetes.csv
   -> graficos/AR03_brechas_por_capa.png

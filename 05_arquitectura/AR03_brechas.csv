@@ -1,17 +1,19 @@
 id,capa,brecha,elemento_actual,elemento_objetivo,tipo,esfuerzo_sem,dependencias,paquete,origen
-B-01,Tecnología,Plataforma del ERP sin soporte del fabricante,NOD-01,NOD-01O,Modificar,10,B-02,WP-01,AP-03 · A2 (3.3 PE-05) · E-05
-B-02,Tecnología,Respaldo sin prueba de restauración,TSV-03,TSV-03O,Modificar,3,,WP-01,AP-03 · D6 (3.1.4) · E-12
-B-03,Tecnología,Servidor único sin redundancia,NOD-01,NOD-05,Nuevo,5,B-01,WP-01,COBIT DSS04 (4.2) · D6 · E-12
-B-04,Datos,Sin registro de actividades de tratamiento,,DO-09,Nuevo,4,,WP-02,AP-04 · A3 (3.3 PE-09) · E-11
-B-05,Negocio,Sin dueños de dato designados,,ROL-04,Nuevo,2,B-04,WP-03,AP-01 · D7 (2.4)
-B-06,Datos,Cliente en tres lugares sin fuente ni dueño,DO-01; DO-02; DO-03,DO-01,Modificar,6,B-05; B-08,WP-03,AP-01 · D7 · E-09
-B-07,Datos,Precio sin fuente autoritativa,DO-05,DO-05O,Modificar,3,B-05,WP-03,AP-01 · AP-06
-B-08,Aplicación,Integración por archivo plano nocturno,AIF-01,APP-14; AIF-03,Nuevo,8,B-01,WP-04,AP-02 · D3 · D4
-B-09,Datos,Stock con dos versiones (ERP y WMS),DO-07; DO-08,DO-07O,Modificar,3,B-08,WP-03,AP-01 · AP-02
-B-10,Aplicación,Portal B2B sin integración,APP-02,APP-02O,Modificar,8,B-08; B-06; B-16,WP-05,Visión (2.2) · AP-05 · E-01
-B-11,Negocio,Toma de pedido por teléfono y papel,PRO-02,PRO-02O,Modificar,4,B-10,WP-05,AP-05 · D3 (3.1.1 CV-05) · E-08
-B-12,Aplicación,Ruteo en hoja de cálculo,APP-06,APP-13; ASV-04,Nuevo,7,B-08; B-09,WP-06,AP-06 · D4 (3.1.1 CV-03) · E-02
-B-13,Aplicación,Análisis comercial en hojas de cálculo,APP-11,APP-15,Nuevo,5,B-04; B-06; B-07,WP-07,D1 (3.1.5) · E-07
-B-14,Negocio,Reclamo por correo sin registro ni seguimiento,PRO-08,PRO-08O; APP-16,Nuevo,4,B-06,WP-08,ITIL / COBIT DSS02 (4.2) · A1 · E-06
-B-15,Aplicación,Hojas de clientes · precios · cobranza y personal operan como sistema,APP-07; APP-08; APP-09; APP-10,,Retirar,3,B-06; B-07; B-13,WP-07,AP-06
-B-16,Aplicación,Portal dependiente de un solo desarrollador,APP-02,APP-02O,Modificar,3,,WP-09,AP-07 · D2 (3.1.3) · E-10
+B-01,Negocio,Sin Comité ni Líder de Gobierno Digital designados,,ACT-09; ROL-05,Nuevo,2,,WP-01,AP-01 · H-01 · R.M. 119-2018-PCM
+B-02,Negocio,Sin Plan de Gobierno Digital ni PETI aprobados,,PRO-09,Nuevo,6,B-01,WP-01,AP-01 · H-01 · H-02 · D. Leg. 1412
+B-03,Negocio,Sin dueños de dato designados por cargo,,ROL-04,Nuevo,2,B-01,WP-01,AP-02 · H-09
+B-04,Datos,Datos personales sin registro de actividades de tratamiento,,DO-09,Nuevo,3,B-03,WP-02,AP-07 · H-10 · Ley 29733 · D. S. 016-2024-JUS
+B-05,Tecnología,Respaldo a disco local sin restauración probada ni copia fuera de la sede,TSV-03,TSV-03O; NOD-06,Modificar,3,,WP-04,AP-03 · H-05 · COBIT DSS04
+B-06,Tecnología,Servidor único sin autonomía de energía,NOD-01,NOD-01O,Modificar,4,,WP-04,AP-03 · H-04 · H-05
+B-07,Aplicación,Rentas y catastro con soporte vencido desde 2023,APP-03,APP-03O,Modificar,6,B-05; B-06,WP-05,AP-03 · AP-04 · H-04 · incidente (Ficha §G)
+B-08,Aplicación,Trámite documentario sin soporte · código ni documentación,APP-02,APP-02O,Reemplazar,12,B-05; B-06,WP-05,AP-04 · H-03
+B-09,Datos,Expediente sin fuente digital (el físico manda · 1 340 sin estado),DO-04; DO-05,DO-04O,Modificar,4,B-03; B-08,WP-03,AP-02 · AP-05 · H-09
+B-10,Datos,Deuda del contribuyente distinta en rentas y fiscalización,DO-01; DO-02,DO-01,Modificar,3,B-03; B-07,WP-03,AP-02 · H-09
+B-11,Aplicación,Mesa de partes virtual por formulario y correo que se imprime,APP-05; AIF-01,AIF-04,Reemplazar,3,B-08,WP-06,AP-06 · H-06
+B-12,Aplicación,Integraciones manuales (correo impreso · recaudación digitada al SIAF-SP),,APP-11; AIF-03,Nuevo,6,B-07; B-08,WP-07,AP-06 · H-06 · D. Leg. 1412
+B-13,Negocio,Registro civil en papel · sin sistema,PRO-04,PRO-04O; APP-12; DO-10,Nuevo,8,B-04; B-12,WP-06,AP-05 · AP-06 · H-08
+B-14,Negocio,Licencias con fuente en el archivo físico y plazos discrepantes,PRO-03; DO-06,PRO-03O; DO-06O,Modificar,3,B-08,WP-06,AP-05 · H-07
+B-15,Aplicación,Tres hojas de cálculo operan como sistema,APP-06; APP-07; APP-08,,Retirar,2,B-09; B-10; B-14,WP-03,AP-05 · H-07
+B-16,Tecnología,Red plana sin segmentación y sin segundo factor,NET-01,NET-01O; TSV-05,Modificar,4,B-06,WP-02,AP-07 · H-10 · H-11
+B-17,Negocio,Gestión de TI informal: cambios sin registro · incidentes en cuaderno · sin inventario de activos,,APP-13; DO-11,Nuevo,3,B-01,WP-08,AP-04 · H-12 · COBIT BAI06 y DSS02
+B-18,Negocio,Atención al ciudadano sin seguimiento del trámite,PRO-06,PRO-06O; ASV-06,Modificar,2,B-11,WP-06,AP-06 · H-06

@@ -1,10 +1,9 @@
 paquete,nombre,proyecto
-WP-01,Continuidad y plataforma del ERP,P-01 · P-03
-WP-02,Cumplimiento de datos personales,P-02
-WP-03,Gobierno del dato y maestros,P-08 · P-06 (gobierno)
-WP-04,Capa de integración por servicios,P-12 (nuevo · propuesto para 7.1)
-WP-05,Canal digital integrado,P-04 · P-07
-WP-06,Ruteo y trazabilidad de despacho,P-05
-WP-07,Analítica y retiro de hojas de cálculo,P-06
-WP-08,Atención de reclamos con trazabilidad,P-11
-WP-09,Gestión del conocimiento del portal,P-09
+WP-01,Gobierno digital y de TI,P-01 Comité · Líder y Plan de Gobierno Digital
+WP-02,Protección de datos y seguridad,P-02 Registro de tratamientos y seguridad de la información
+WP-03,Fuentes autoritativas y retiro de hojas,P-03 Gobierno del dato municipal
+WP-04,Continuidad de la infraestructura,P-04 Respaldo verificado y continuidad
+WP-05,Recuperación de sistemas críticos,P-05 Rentas con soporte y gestión documental
+WP-06,Servicios digitales al ciudadano,P-06 Mesa de partes · licencias y registro civil digitales
+WP-07,Interoperabilidad con el Estado,P-07 Capa de interoperabilidad y conexión a la PIDE
+WP-08,Gestión de servicios de TI,P-08 Mesa de ayuda · cambios e inventario de activos

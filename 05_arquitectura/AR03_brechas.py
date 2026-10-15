@@ -1,4 +1,4 @@
-"""AR03 · Análisis de brechas y paquetes de trabajo — DICOSUR (Taller 10, SI-886).
+"""AR03 · Análisis de brechas y paquetes de trabajo — Municipalidad Distrital de Alto Selva (Taller 10, SI-886).
 
 Lee AR03_brechas.csv (brechas por capa, tipo, esfuerzo y dependencias) y
 AR03_paquetes_def.csv (paquetes de trabajo y proyecto del portafolio) y:
@@ -32,12 +32,14 @@ b["esfuerzo_sem"] = b["esfuerzo_sem"].astype(int)
 lista = lambda s: [x.strip() for x in s.split(";") if x.strip()]
 
 print("=" * 76)
-print("AR03 · ANÁLISIS DE BRECHAS Y PAQUETES DE TRABAJO · DICOSUR")
+print("AR03 · ANÁLISIS DE BRECHAS Y PAQUETES DE TRABAJO · ALTO SELVA")
 print("=" * 76)
 
 # ---------------------------------------------------------------- 1. brechas por capa y tipo
 print(f"\n1. Brechas por capa y tipo ({len(b)} brechas · {b.esfuerzo_sem.sum()} semanas-persona)\n")
+TIPOS = ["Nuevo", "Modificar", "Reemplazar", "Retirar"]
 tabla = pd.crosstab(b.capa, b.tipo, margins=True, margins_name="Total")
+tabla = tabla[[t for t in TIPOS if t in tabla] + ["Total"]]
 tabla = tabla.reindex(["Negocio", "Datos", "Aplicación", "Tecnología", "Total"])
 print(tabla.to_string())
 
@@ -92,22 +94,24 @@ P.to_csv(BASE / "AR03_paquetes.csv", index=False)
 
 print("\n2. Paquetes de trabajo derivados de las brechas\n")
 for r in P.itertuples():
-    print(f"  {r.paquete}  {r.nombre:<40} {r.n_brechas} brechas  {r.esfuerzo_sem:>3} sem-p  -> {r.proyecto}")
+    print(f"  {r.paquete}  {r.nombre:<42} {r.n_brechas} brechas  {r.esfuerzo_sem:>3} sem-p  -> {r.proyecto}")
     print(f"         brechas: {r.brechas}" + (f" · depende de: {r.depende_de}" if r.depende_de else " · sin dependencias"))
 
 print("\n3. Secuencia obligada por dependencias\n")
 for n in sorted(set(ola.values())):
     print(f"  Ola {n}: " + " · ".join(f"{p} {P.set_index('paquete').loc[p, 'nombre']}" for p in sorted(k for k, v in ola.items() if v == n)))
 print(f"\n  Ruta crítica por esfuerzo: {' → '.join(ruta)} = {largo[fin]} semanas-persona")
-print("  Regla verificada: WP-07 (analítica) queda después de WP-03 (gobierno del dato) y WP-02 (cumplimiento)"
-      if ola["WP-07"] > max(ola["WP-03"], ola["WP-02"]) else "  [ALERTA] la analítica no queda después del gobierno del dato")
+print("  Regla verificada: WP-01 (gobierno digital) y WP-04 (continuidad) abren la secuencia (AP-01 · AP-03)"
+      if ola["WP-01"] == 1 and ola["WP-04"] == 1 else "  [ALERTA] el gobierno digital o la continuidad no abren la secuencia")
+print("  Regla verificada: WP-06 (servicios al ciudadano) queda después de WP-02 (datos personales) y WP-07 (interoperabilidad)"
+      if ola["WP-06"] > max(ola["WP-02"], ola["WP-07"]) else "  [ALERTA] los servicios digitales no quedan después de la protección de datos")
 
 # ---------------------------------------------------------------- 4. gráficos
 fig, ax = plt.subplots(figsize=(8, 3.6))
 t = pd.crosstab(b.capa, b.tipo).reindex(["Negocio", "Datos", "Aplicación", "Tecnología"]).fillna(0)
-colores = {"Nuevo": "#2e7d5b", "Modificar": "#e0a526", "Retirar": "#b23b3b"}
+colores = {"Nuevo": "#2e7d5b", "Modificar": "#e0a526", "Reemplazar": "#2e6fa8", "Retirar": "#b23b3b"}
 izq = [0] * len(t)
-for tipo in ["Nuevo", "Modificar", "Retirar"]:
+for tipo in TIPOS:
     if tipo in t:
         ax.barh(t.index, t[tipo], left=izq, color=colores[tipo], label=tipo)
         for k, (l, v) in enumerate(zip(izq, t[tipo])):
@@ -116,7 +120,7 @@ for tipo in ["Nuevo", "Modificar", "Retirar"]:
         izq = [a + c for a, c in zip(izq, t[tipo])]
 ax.invert_yaxis()
 ax.set_xlabel("Número de brechas")
-ax.set_title(f"DICOSUR · {len(b)} brechas por capa y tipo", fontsize=11)
+ax.set_title(f"Municipalidad de Alto Selva · {len(b)} brechas por capa y tipo", fontsize=11)
 ax.legend(frameon=False, loc="lower right")
 ax.spines[["top", "right"]].set_visible(False)
 fig.tight_layout()
@@ -124,7 +128,7 @@ fig.savefig(GRAFICOS / "AR03_brechas_por_capa.png", dpi=170)
 plt.close(fig)
 
 fig, ax = plt.subplots(figsize=(9, 3.9))
-paleta = {1: "#b23b3b", 2: "#e0a526", 3: "#2e6fa8", 4: "#2e7d5b"}
+paleta = {1: "#b23b3b", 2: "#e0a526", 3: "#2e6fa8", 4: "#2e7d5b", 5: "#7b4fa0"}
 orden = P.sort_values(["inicio_sem", "paquete"], ascending=[False, False])
 for k, r in enumerate(orden.itertuples()):
     critico = r.paquete in ruta
@@ -134,7 +138,7 @@ ax.set_yticks([])
 ax.set_xlabel("Semanas-persona acumuladas (inicio más temprano según dependencias)")
 ax.set_title("Secuencia obligada de los paquetes de trabajo (borde negro = ruta crítica)", fontsize=10)
 from matplotlib.patches import Patch
-ax.legend(handles=[Patch(color=c, label=f"Ola {n}") for n, c in paleta.items()], frameon=False, ncol=4, loc="upper right", fontsize=8)
+ax.legend(handles=[Patch(color=c, label=f"Ola {n}") for n, c in paleta.items()], frameon=False, ncol=5, loc="upper right", fontsize=8)
 ax.set_xlim(0, largo[fin] + 22)
 ax.set_ylim(-0.6, len(orden) + 0.6)
 ax.spines[["top", "right", "left"]].set_visible(False)
