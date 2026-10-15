@@ -1,20 +1,21 @@
 ============================================================================
-AR04 · VALIDACIÓN DEL TALLER 10 · DICOSUR
+AR04 · VALIDACIÓN DEL TALLER 10 · MUNICIPALIDAD DISTRITAL DE ALTO SELVA
 ============================================================================
-  Modelo: 117 elementos · 178 relaciones · 5 vistas
+  Modelo: 129 elementos · 213 relaciones · 5 vistas
 
 Comprobación 1 · Cada elemento está en la capa que le corresponde
-  [OK] 117/117 elementos en la carpeta de su capa
-  [OK] 178/178 relaciones válidas en ArchiMate 3.2
+  [OK] 129/129 elementos en la carpeta de su capa
+  [OK] 213/213 relaciones válidas en ArchiMate 3.2
   [OK] 0 elementos con detalle técnico sensible
 
 Comprobación 2 · Toda aplicación del modelo actual existe en la organización
-  [OK] 12/12 componentes actuales existen en el inventario
-  [OK] 12/12 aplicaciones del inventario están en el modelo actual
-  [OK] 6/6 hojas de cálculo modeladas como componentes de aplicación
+  [OK] 10/10 componentes actuales existen en el inventario de la organización
+  [OK] 8/8 aplicaciones de la sección 2 del inventario están en el modelo actual
+  [OK] 3/3 hojas de cálculo modeladas como componentes de aplicación
+  [OK] 6/6 procesos de la ficha (sección D) trazados en el modelo actual
 
 Comprobación 3 · Cada brecha se puede señalar en los dos modelos
-  [OK] 16 brechas · 0 sin señalar en los dos modelos
-  [OK] 16/16 brechas registradas como elemento Gap del modelo
+  [OK] 18 brechas · 0 sin señalar en los dos modelos
+  [OK] 18/18 brechas registradas como elemento Gap del modelo
 
 Resultado: todas las comprobaciones pasaron.

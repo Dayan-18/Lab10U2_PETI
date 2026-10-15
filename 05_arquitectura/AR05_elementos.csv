@@ -13,15 +13,15 @@ ROL-02,Negocio,BusinessRole,Contribuyente,AO,
 ROL-03,Negocio,BusinessRole,Fiscalizador,AO,
 ROL-04,Negocio,BusinessRole,Dueño del dato,O,Designado por cargo para cada entidad (AP-02)
 ROL-05,Negocio,BusinessRole,Líder de Gobierno Digital,O,R.M. 119-2018-PCM
-PRO-01,Negocio,BusinessProcess,Trámite documentario y mesa de partes (el físico manda),A,1 340 expedientes sin estado tras la caída
+PRO-01,Negocio,BusinessProcess,Trámite documentario y mesa de partes (el físico manda),A,Ficha: Trámite documentario y mesa de partes · 1 340 expedientes sin estado tras la caída
 PRO-01O,Negocio,BusinessProcess,Trámite con expediente electrónico y mesa de partes digital,O,AP-05
 PRO-02,Negocio,BusinessProcess,Recaudación de tributos municipales,AO,
-PRO-03,Negocio,BusinessProcess,Licencias en hoja y archivo físico,A,
+PRO-03,Negocio,BusinessProcess,Licencias en hoja y archivo físico,A,Ficha: Licencias de funcionamiento y edificación
 PRO-03O,Negocio,BusinessProcess,Licencias con registro digital y plazos controlados,O,
-PRO-04,Negocio,BusinessProcess,Registro civil en papel,A,Sin sistema
+PRO-04,Negocio,BusinessProcess,Registro civil en papel,A,Ficha: Registro civil · Sin sistema
 PRO-04O,Negocio,BusinessProcess,Registro civil digital integrado con RENIEC,O,
 PRO-05,Negocio,BusinessProcess,Contrataciones y logística,AO,
-PRO-06,Negocio,BusinessProcess,Atención al ciudadano por formulario y correo,A,
+PRO-06,Negocio,BusinessProcess,Atención al ciudadano por formulario y correo,A,Ficha: Atención al ciudadano
 PRO-06O,Negocio,BusinessProcess,Atención al ciudadano con seguimiento en línea,O,
 PRO-07,Negocio,BusinessProcess,Gestión de personal y planilla,AO,
 PRO-08,Negocio,BusinessProcess,Transparencia y acceso a la información,AO,

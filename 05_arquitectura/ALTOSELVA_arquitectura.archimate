@@ -65,7 +65,7 @@
     <element xsi:type="archimate:BusinessProcess" name="Trámite documentario y mesa de partes (el físico manda)" id="id-a54d0ab4950dba51d9619b6439e14919">
       <property key="codigo" value="PRO-01"/>
       <property key="estado" value="actual"/>
-      <documentation>1 340 expedientes sin estado tras la caída</documentation>
+      <documentation>Ficha: Trámite documentario y mesa de partes · 1 340 expedientes sin estado tras la caída</documentation>
     </element>
     <element xsi:type="archimate:BusinessProcess" name="Trámite con expediente electrónico y mesa de partes digital" id="id-cae66c0d8b0e0789c9542daab990abf2">
       <property key="codigo" value="PRO-01O"/>
@@ -79,6 +79,7 @@
     <element xsi:type="archimate:BusinessProcess" name="Licencias en hoja y archivo físico" id="id-fe02dd3776e143351011b8fb70d6770a">
       <property key="codigo" value="PRO-03"/>
       <property key="estado" value="actual"/>
+      <documentation>Ficha: Licencias de funcionamiento y edificación</documentation>
     </element>
     <element xsi:type="archimate:BusinessProcess" name="Licencias con registro digital y plazos controlados" id="id-db0688a6198ce4069743027b0b79f969">
       <property key="codigo" value="PRO-03O"/>
@@ -87,7 +88,7 @@
     <element xsi:type="archimate:BusinessProcess" name="Registro civil en papel" id="id-05d35988b85783a255d8354ea0557a97">
       <property key="codigo" value="PRO-04"/>
       <property key="estado" value="actual"/>
-      <documentation>Sin sistema</documentation>
+      <documentation>Ficha: Registro civil · Sin sistema</documentation>
     </element>
     <element xsi:type="archimate:BusinessProcess" name="Registro civil digital integrado con RENIEC" id="id-5afd69ebf155adaa476a372babae98bf">
       <property key="codigo" value="PRO-04O"/>
@@ -100,6 +101,7 @@
     <element xsi:type="archimate:BusinessProcess" name="Atención al ciudadano por formulario y correo" id="id-ce67b28bdec6a1f7e83bee2f7c121da7">
       <property key="codigo" value="PRO-06"/>
       <property key="estado" value="actual"/>
+      <documentation>Ficha: Atención al ciudadano</documentation>
     </element>
     <element xsi:type="archimate:BusinessProcess" name="Atención al ciudadano con seguimiento en línea" id="id-9d14080b485c3c56b7d1422069daa4c3">
       <property key="codigo" value="PRO-06O"/>
